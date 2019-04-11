@@ -12,6 +12,8 @@
     "electron": "^4.1.4"
   },
   "dependencies": {
-    "bootstrap": "^4.3.1"
+    "boostrap": "^2.0.0",
+    "bootstrap": "^4.3.1",
+    "howler": "^2.1.1"
   }
 }

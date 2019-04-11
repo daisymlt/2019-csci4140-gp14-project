@@ -8,8 +8,29 @@ p {
 </style>
 
 <div class="main-content" style="border: 3px#cccccc dashed;">
-        <p>hi</p>
+        <h1>Playing GoWon - One&Only</h1>
+        <h3>Piano Version</h3>
+        <h4>with rain effect</h4>
 </div>
 
+<script type="text/javascript" src="../node_modules/howler/dist/howler.js"></script>
+<script>
+var sound1 = new Howl({
+    src: ['../audio/one&only-piano.mp3']
+  });
+
+  var sound2 = new Howl({
+    src: ['../audio/rain.mp3']
+  });
+  
+  // Play returns a unique Sound ID that can be passed
+  // into any method on Howl to control that specific sound.
+  var id1 = sound1.play();
+  var id2 = sound2.play();
+  
+  // Fade out the first sound and speed up the second.
+  sound1.fade(0.2, 1, 5000, id1);
+  sound2.volume(0.6, id2);
+</script>
 
 <script type="text/javascript" src="../js/sidebar2.js"></script>

@@ -11,3 +11,6 @@ npm install
 ```
 npm start
 ```
+
+can simutaneously play 2 songs now lol
+click 'Player' in sidebar to try try XD

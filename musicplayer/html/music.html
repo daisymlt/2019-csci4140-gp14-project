@@ -1,36 +1,133 @@
 <script type="text/javascript" src="../js/sidebar.js"></script>
 
 <style>
-p {
-    color: black;
+p, h1, h2, h3, h4, h5, h6 {
+  color: black;
 }
 
+h1{
+  font-size: 30px;
+}
+h4{
+  font-size: 20px;
+}
+
+rangeslider{
+    width: 50%;
+}
+
+.myslider {
+    width: 50%;
+    height: 20px;
+    opacity: 2;
+}
+.myslider:hover {
+    opacity: 1;
+}
 </style>
 
-<div class="main-content" style="border: 3px#cccccc dashed;">
-        <h1>Playing GoWon - One&Only</h1>
-        <h3>Piano Version</h3>
-        <h4>with rain effect</h4>
+<div class="main-content">
+        <h1>Playing Unfinished</h1>
+
+    <div class="song1" style="border: 3px#cccccc dashed;">
+      <h1>Unfinsihed</h1>
+      <button id="play" onclick="playSong()">Play</button>
+      <button id="pause" onclick="pauseSong()">Pause</button>
+      <div class="voloumeSliderSong"> 
+        Volume <input type="range" min="0" max="100" value="100" class="myslider" id="sliderRangeSong"> 
+      </div>
+    </div>
+
+    <div class="rain" style="border: 3px#cccccc dashed;">
+      <h1>Rain</h1>
+      <button id="playRain" onclick="playRain()">Play</button>
+      <button id="pauseRain" onclick="pauseRain()">Pause</button>
+      <div class="voloumeSliderRain"> 
+        Volume <input type="range" min="0" max="100" value="100" class="myslider" id="sliderRangeRain"> 
+      </div> 
+    </div>
+
+    <div class="pure" style="border: 3px#cccccc dashed;">
+      <h1>Pure White Noise</h1>
+      <button id="playPure" onclick="playPure()">Play</button>
+      <button id="pausePure" onclick="pausePure()">Pause</button>
+      <div class="voloumeSliderPure"> 
+        Volume <input type="range" min="0" max="100" value="100" class="myslider" id="sliderRangePure"> 
+      </div>
+    </div>
 </div>
 
 <script type="text/javascript" src="../node_modules/howler/dist/howler.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="../node_modules/materialize-css/dist/css/materialize.min.css"> -->
+<script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+
 <script>
-var sound1 = new Howl({
-    src: ['../audio/one&only-piano.mp3']
+var soundSong = new Howl({
+    src: ['../audio/unfinished.mp3']
   });
 
-  var sound2 = new Howl({
+  var soundRain = new Howl({
     src: ['../audio/rain.mp3']
   });
+  soundRain.loop(true);
+
+  var soundPure = new Howl({
+    src: ['../audio/pure-white-noise.mp3']
+  });
+  soundPure.loop(true);
+
+  function playSong(){
+    if(!soundSong.playing()){
+      soundSong.play();
+    }
+  }
   
+  function pauseSong(){
+    soundSong.pause();
+  }
+
+  function playRain(){
+    if(!soundRain.playing()){
+      soundRain.play();
+    }
+  }
+  
+  function pauseRain(){
+    soundRain.pause();
+  }
+
+  function playPure(){
+    if(!soundPure.playing()){
+      soundPure.play();
+    }
+  }
+  
+  function pausePure(){
+    soundPure.pause();
+  }
+
+  var rangesliderSong = document.getElementById("sliderRangeSong");
+  rangesliderSong.oninput = function() {
+    soundSong.volume(this.value/100);
+  }
+
+  var rangesliderRain = document.getElementById("sliderRangeRain");
+  rangesliderRain.oninput = function() {
+    soundRain.volume(this.value/100);
+  }
+
+  var rangesliderPure = document.getElementById("sliderRangePure");
+  rangesliderPure.oninput = function() {
+    soundPure.volume(this.value/100);
+  }
   // Play returns a unique Sound ID that can be passed
   // into any method on Howl to control that specific sound.
-  var id1 = sound1.play();
-  var id2 = sound2.play();
+  //var id1 = sound1.play();
+  //var id2 = sound2.play();
   
   // Fade out the first sound and speed up the second.
-  sound1.fade(0.2, 1, 5000, id1);
-  sound2.volume(0.6, id2);
+  //sound1.fade(0.2, 1, 5000, id1);
+  //sound2.volume(0.6, id2);
 </script>
 
 <script type="text/javascript" src="../js/sidebar2.js"></script>

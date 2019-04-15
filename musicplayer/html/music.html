@@ -58,13 +58,13 @@ rangeslider{
 </div>
 
 <script type="text/javascript" src="../node_modules/howler/dist/howler.js"></script>
-<!-- <link rel="stylesheet" type="text/css" href="../node_modules/materialize-css/dist/css/materialize.min.css"> -->
-<script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
 
 <script>
 var soundSong = new Howl({
     src: ['../audio/unfinished.mp3']
   });
+
+  soundSong.pos(-3, 3, -3)
 
   var soundRain = new Howl({
     src: ['../audio/rain.mp3']

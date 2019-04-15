@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba46d8c0-ed98-4d0f-8776-0da63ee2e5c5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/about.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/through-the-night.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/music.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/music.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/boostrap/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/boostrap/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/materialize-css/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/materialize-css/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -64,7 +61,7 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html/music.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="265">
@@ -74,6 +71,15 @@
                 <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/node_modules/boostrap/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -95,6 +101,7 @@
         <option value="$PROJECT_DIR$/html/about.html" />
         <option value="$PROJECT_DIR$/js/sidebar.js" />
         <option value="$PROJECT_DIR$/html/music.html" />
+        <option value="$PROJECT_DIR$/node_modules/boostrap/package.json" />
       </list>
     </option>
   </component>
@@ -110,6 +117,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -136,7 +144,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -171,11 +178,12 @@
       <workItem from="1555265852646" duration="1363000" />
       <workItem from="1555347297685" duration="257000" />
       <workItem from="1555350666215" duration="170000" />
+      <workItem from="1555356675073" duration="239000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2225000" />
+    <option name="totallyTimeSpent" value="2464000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -256,6 +264,13 @@
             <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/boostrap/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
         </state>
       </provider>
     </entry>

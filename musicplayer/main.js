@@ -14,6 +14,7 @@ function createWindow () {
   // Open the DevTools.
   //win.webContents.openDevTools()
 
+  //這邊的console.log是在terminal
   console.log('testing')
 
   win.webContents.on('dom-ready', () => {

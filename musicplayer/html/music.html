@@ -89,6 +89,8 @@ var soundSong = new Howl({
   function playRain(){
     if(!soundRain.playing()){
       soundRain.play();
+    } else {
+        soundRain.pause();
     }
   }
   
@@ -109,12 +111,12 @@ var soundSong = new Howl({
   var rangesliderSong = document.getElementById("sliderRangeSong");
   rangesliderSong.oninput = function() {
     soundSong.volume(this.value/100);
-  }
+  };
 
   var rangesliderRain = document.getElementById("sliderRangeRain");
   rangesliderRain.oninput = function() {
     soundRain.volume(this.value/100);
-  }
+  };
 
   var rangesliderPure = document.getElementById("sliderRangePure");
   rangesliderPure.oninput = function() {

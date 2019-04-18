@@ -2,10 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba46d8c0-ed98-4d0f-8776-0da63ee2e5c5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/audio/through-the-night.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/music.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/music.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/boostrap/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/boostrap/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/materialize-css/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/materialize-css/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/.idea/p5.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/addons/p5.dom.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/addons/p5.dom.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/addons/p5.sound.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/addons/p5.sound.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/empty-example/.idea/empty-example.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/empty-example/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/empty-example/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/empty-example/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/empty-example/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/empty-example/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/empty-example/sketch.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/p5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/p5.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../p5/p5.pre-min.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -61,11 +80,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/music.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="86" column="3" selection-start-line="86" selection-start-column="3" selection-end-line="86" selection-end-column="3" />
+            <state relative-caret-position="641">
+              <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -75,7 +94,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/boostrap/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
@@ -86,7 +105,11 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/main_style.css">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="975">
+              <caret line="65" column="37" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -100,8 +123,8 @@
         <option value="$PROJECT_DIR$/main.js" />
         <option value="$PROJECT_DIR$/html/about.html" />
         <option value="$PROJECT_DIR$/js/sidebar.js" />
-        <option value="$PROJECT_DIR$/html/music.html" />
         <option value="$PROJECT_DIR$/node_modules/boostrap/package.json" />
+        <option value="$PROJECT_DIR$/html/music.html" />
       </list>
     </option>
   </component>
@@ -124,6 +147,11 @@
             <path>
               <item name="musicplayer" type="b2602c69:ProjectViewProjectNode" />
               <item name="musicplayer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="musicplayer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="musicplayer" type="462c0819:PsiDirectoryNode" />
+              <item name="audio" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="musicplayer" type="b2602c69:ProjectViewProjectNode" />
@@ -179,17 +207,20 @@
       <workItem from="1555347297685" duration="257000" />
       <workItem from="1555350666215" duration="170000" />
       <workItem from="1555356675073" duration="239000" />
+      <workItem from="1555476652723" duration="245000" />
+      <workItem from="1555580515958" duration="855000" />
+      <workItem from="1555582952952" duration="624000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2464000" />
+    <option name="totallyTimeSpent" value="4188000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19309373" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19309373" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -252,25 +283,29 @@
     <entry file="file://$PROJECT_DIR$/html/fav.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/boostrap/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/css/main_style.css">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="975">
+          <caret line="65" column="37" selection-start-line="65" selection-start-column="37" selection-end-line="65" selection-end-column="37" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html/music.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="86" column="3" selection-start-line="86" selection-start-column="3" selection-end-line="86" selection-end-column="3" />
+        <state relative-caret-position="641">
+          <caret line="67" lean-forward="true" selection-start-line="67" selection-end-line="67" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/boostrap/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
         </state>
       </provider>
     </entry>

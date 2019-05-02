@@ -1,5 +1,8 @@
 <script type="text/javascript" src="../js/sidebar.js"></script>
 
+<script language="JavaScript" type="text/javascript" src="../node_modules/p5/lib/p5.js"></script>
+<script type="text/javascript" src="../node_modules/p5/lib/addons/p5.sound.js"></script>
+
 <style>
 p, h1, h2, h3, h4, h5, h6 {
   color: black;
@@ -31,7 +34,7 @@ rangeslider{
 
     <div class="song1" style="border: 3px#cccccc dashed;">
       <h1>Unfinsihed</h1>
-      <button id="play" onclick="playSong()">Play</button>
+      <button id="play" onclick="togglePlaying();">Play</button>
       <button id="pause" onclick="pauseSong()">Pause</button>
       <div class="voloumeSliderSong"> 
         Volume <input type="range" min="0" max="100" value="100" class="myslider" id="sliderRangeSong"> 
@@ -57,14 +60,30 @@ rangeslider{
     </div>
 </div>
 
-<script type="text/javascript" src="../node_modules/howler/dist/howler.js"></script>
-
 <script>
-var soundSong = new Howl({
-    src: ['../audio/unfinished.mp3']
-  });
+    var song;
 
-  soundSong.pos(-3, 3, -3)
+    function setup() {
+        song = loadSound("../audio/Unfinished.mp3", loaded);
+    }
+
+    function loaded() {}
+
+    function togglePlaying() {
+        if (!song.isPlaying()) {
+            song.play();
+        } else {
+            song.pause();
+        }
+    }
+
+    /*var song = loadSound("../audio/Unfinished.mp3", loaded);
+
+    function loaded() {}
+
+    */
+
+  /*soundSong.pos(-3, 3, -3)
 
   var soundRain = new Howl({
     src: ['../audio/rain.mp3']
@@ -121,7 +140,7 @@ var soundSong = new Howl({
   var rangesliderPure = document.getElementById("sliderRangePure");
   rangesliderPure.oninput = function() {
     soundPure.volume(this.value/100);
-  }
+  }*/
   // Play returns a unique Sound ID that can be passed
   // into any method on Howl to control that specific sound.
   //var id1 = sound1.play();

@@ -56,6 +56,7 @@
     var volume = document.getElementById("volume");
     var button = document;
     var reverb;
+    var cVerb;
 
     function preload() {
         song = loadSound("../audio/through-the-night.mp3");
@@ -63,6 +64,8 @@
         // noise.setVolume(0.35); // rain parameter
 
         noise = loadSound("../audio/cafe.mp3");
+
+        cVerb = new p5.Convolver("../IMreverbs/Ruby Room.wav");
     }
 
     function setup() {
@@ -72,7 +75,11 @@
         // connect song to reverb, process w/
         // 3 second reverbTime, decayRate of 2%
         // reverb.process(song, 2, 50); // rain parameter
-        reverb.process(song, 3, 30); // cafe parameter
+
+        // reverb.process(song, 3, 30); // cafe parameter
+
+        cVerb.process(song);
+        
     }
 
     function togglePlaying() {

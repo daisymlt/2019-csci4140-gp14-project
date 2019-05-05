@@ -4,70 +4,61 @@
 <script type="text/javascript" src="../node_modules/p5/lib/addons/p5.sound.js"></script>
 
 <style>
-p, h1, h2, h3, h4, h5, h6 {
-  color: black;
+.song {
+    border: 3px#cccccc dashed;
 }
 
-h1{
-  font-size: 30px;
-}
-h4{
-  font-size: 20px;
+.song h1 {
+    padding: 0.5em;
 }
 
-rangeslider{
-    width: 50%;
+.button {
+    background-color: #ffffff;
+    border: none;
+    padding: 10px 25px;
+    display: inline-block;
+    margin: 1em 1em;
 }
 
 .myslider {
-    width: 50%;
-    height: 20px;
-    opacity: 2;
+    -webkit-appearance: none;
+    width: 30%;
+    height: 6px;
+    border-radius: 4px;
+    background: #0b0b0b;
+    display: inline-block;
+    -webkit-transition: .2s;
+    transition: background .2s;
 }
 .myslider:hover {
-    opacity: 1;
+    background: #2990c9;
 }
+
 </style>
 
-<div class="main-content">
-        <h1>Playing Unfinished</h1>
+<div>
+    <h1>Song Player</h1>
 
-    <div class="song1" style="border: 3px#cccccc dashed;">
-      <h1>Unfinsihed</h1>
-      <button id="play" onclick="togglePlaying();">Play</button>
-      <button id="pause" onclick="pauseSong()">Pause</button>
-      <div class="voloumeSliderSong"> 
-        Volume <input type="range" min="0" max="100" value="100" class="myslider" id="sliderRangeSong"> 
-      </div>
-    </div>
-
-    <div class="rain" style="border: 3px#cccccc dashed;">
-      <h1>Rain</h1>
-      <button id="playRain" onclick="playRain()">Play</button>
-      <button id="pauseRain" onclick="pauseRain()">Pause</button>
-      <div class="voloumeSliderRain"> 
-        Volume <input type="range" min="0" max="100" value="100" class="myslider" id="sliderRangeRain"> 
-      </div> 
-    </div>
-
-    <div class="pure" style="border: 3px#cccccc dashed;">
-      <h1>Pure White Noise</h1>
-      <button id="playPure" onclick="playPure()">Play</button>
-      <button id="pausePure" onclick="pausePure()">Pause</button>
-      <div class="voloumeSliderPure"> 
-        Volume <input type="range" min="0" max="100" value="100" class="myslider" id="sliderRangePure"> 
+    <div class="song">
+      <h1>Through the night</h1>
+      <div>
+          <button class="button" onclick="togglePlaying();">
+              <img src="../image/play.png" style="height: 30px; width: auto"/>
+          </button>
+          Volume <input type="range" class="myslider" min="0" max="100" value="100" id="volume">
       </div>
     </div>
 </div>
 
 <script>
-    var song;
+    var song, noise;
+    var volume = document.getElementById("volume");
+    var button = document;
 
     function setup() {
-        song = loadSound("../audio/Unfinished.mp3", loaded);
+        song = loadSound("../audio/through-the-night.mp3");
+        noise = loadSound("");
     }
-
-    function loaded() {}
 
     function togglePlaying() {
         if (!song.isPlaying()) {
@@ -77,78 +68,10 @@ rangeslider{
         }
     }
 
-    /*var song = loadSound("../audio/Unfinished.mp3", loaded);
-
-    function loaded() {}
-
-    */
-
-  /*soundSong.pos(-3, 3, -3)
-
-  var soundRain = new Howl({
-    src: ['../audio/rain.mp3']
-  });
-  soundRain.loop(true);
-
-  var soundPure = new Howl({
-    src: ['../audio/pure-white-noise.mp3']
-  });
-  soundPure.loop(true);
-
-  function playSong(){
-    if(!soundSong.playing()){
-      soundSong.play();
+    volume.oninput = function () {
+        song.setVolume(this.value / 100);
     }
-  }
-  
-  function pauseSong(){
-    soundSong.pause();
-  }
 
-  function playRain(){
-    if(!soundRain.playing()){
-      soundRain.play();
-    } else {
-        soundRain.pause();
-    }
-  }
-  
-  function pauseRain(){
-    soundRain.pause();
-  }
-
-  function playPure(){
-    if(!soundPure.playing()){
-      soundPure.play();
-    }
-  }
-  
-  function pausePure(){
-    soundPure.pause();
-  }
-
-  var rangesliderSong = document.getElementById("sliderRangeSong");
-  rangesliderSong.oninput = function() {
-    soundSong.volume(this.value/100);
-  };
-
-  var rangesliderRain = document.getElementById("sliderRangeRain");
-  rangesliderRain.oninput = function() {
-    soundRain.volume(this.value/100);
-  };
-
-  var rangesliderPure = document.getElementById("sliderRangePure");
-  rangesliderPure.oninput = function() {
-    soundPure.volume(this.value/100);
-  }*/
-  // Play returns a unique Sound ID that can be passed
-  // into any method on Howl to control that specific sound.
-  //var id1 = sound1.play();
-  //var id2 = sound2.play();
-  
-  // Fade out the first sound and speed up the second.
-  //sound1.fade(0.2, 1, 5000, id1);
-  //sound2.volume(0.6, id2);
 </script>
 
 <script type="text/javascript" src="../js/sidebar2.js"></script>

@@ -1,4 +1,5 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow } = require('electron');
+const { ipcMain } = require('electron');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -30,7 +31,7 @@ function createWindow () {
 // 當 Electron 完成初始化，並且準備好建立瀏覽器視窗時
 // 會呼叫這的方法
 // 有些 API 只能在這個事件發生後才能用。
-app.on('ready', createWindow)
+app.on('ready', createWindow);
 
 // 在所有視窗都關閉時結束程式。
 app.on('window-all-closed', () => {

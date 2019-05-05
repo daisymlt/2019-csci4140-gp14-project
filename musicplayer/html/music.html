@@ -40,9 +40,9 @@
     <h1>Song Player</h1>
 
     <div class="song">
-      <h1>Through the night</h1>
+      <h1>Through the night (cafe)</h1>
       <div>
-          <button class="button" onclick="togglePlaying();">
+          <button id="playbtn" class="button" onclick="togglePlaying();">
               <img src="../image/play.png" style="height: 30px; width: auto"/>
           </button>
           Volume <input type="range" class="myslider" min="0" max="100" value="100" id="volume">
@@ -51,25 +51,50 @@
 </div>
 
 <script>
+    const { ipcRenderer } = require('electron');
     var song, noise;
     var volume = document.getElementById("volume");
     var button = document;
+    var reverb;
+
+    function preload() {
+        song = loadSound("../audio/through-the-night.mp3");
+        // noise = loadSound("../audio/rain.mp3");
+        // noise.setVolume(0.35); // rain parameter
+
+        noise = loadSound("../audio/cafe.mp3");
+    }
 
     function setup() {
-        song = loadSound("../audio/through-the-night.mp3");
-        noise = loadSound("");
+        reverb = new p5.Reverb();
+        song.disconnect(); // so we'll only hear reverb...
+
+        // connect song to reverb, process w/
+        // 3 second reverbTime, decayRate of 2%
+        // reverb.process(song, 2, 50); // rain parameter
+        reverb.process(song, 3, 30); // cafe parameter
     }
 
     function togglePlaying() {
         if (!song.isPlaying()) {
             song.play();
+            noise.play();
         } else {
             song.pause();
+            noise.pause();
         }
+        // if( document.getElementById("playbtn").src == "../image/play.png" ){
+        //     document.getElementById("playbtn").src = "../image/pause.png";
+        //     console.log("play png");
+        // } 
+        // else if( document.getElementById("playbtn").src == "../image/pause.png" ){
+        //     document.getElementById("playbtn").src = "../image/play.png";
+        // }
     }
 
     volume.oninput = function () {
         song.setVolume(this.value / 100);
+        noise.setVolume(this.value / 100);
     }
 
 </script>

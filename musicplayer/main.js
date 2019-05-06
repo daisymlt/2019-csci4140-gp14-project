@@ -10,7 +10,7 @@ function createWindow () {
   win = new BrowserWindow({ width: 800, height: 600 })
 
   // 並載入應用程式的 index.html。
-  win.loadFile('html/index.html')
+  win.loadFile('html/original.html')
 
   // Open the DevTools.
   //win.webContents.openDevTools()

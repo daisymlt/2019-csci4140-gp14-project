@@ -2,50 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba46d8c0-ed98-4d0f-8776-0da63ee2e5c5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Block Inside.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Bottle Hall.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Cement Blocks 1.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Cement Blocks 2.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Chateau de Logne, Outside.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Conic Long Echo Hall.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Deep Space.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Derlon Sanctuary.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Direct Cabinet N1.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Direct Cabinet N2.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Direct Cabinet N3.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Direct Cabinet N4.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Five Columns Long.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Five Columns.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/French 18th Century Salon.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Going Home.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Greek 7 Echo Hall.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Highly Damped Large Room.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/In The Silo Revised.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/In The Silo.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Large Bottle Hall.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Large Long Echo Hall.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Large Wide Echo Hall.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Masonic Lodge.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Musikvereinsaal.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Narrow Bumpy Space.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Nice Drum Room.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/On a Star.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Parking Garage.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Rays.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Right Glass Triangle.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Ruby Room.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Scala Milan Opera Hall.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Small Drum Room.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Small Prehistoric Cave.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/St Nicolaes Church.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Trig Room.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/Vocal Duo.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/IMreverbs/license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/cafe(louder).mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/audio/cafe.mp3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/music.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/music.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -67,11 +24,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/music.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="721">
-              <caret line="123" column="6" selection-start-line="123" selection-start-column="6" selection-end-line="123" selection-end-column="6" />
+            <state relative-caret-position="1260">
+              <caret line="84" column="47" selection-start-line="84" selection-start-column="47" selection-end-line="84" selection-end-column="47" />
               <folding>
                 <element signature="n#style#0;n#h1#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#button#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -107,6 +65,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -138,7 +97,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -181,17 +139,18 @@
       <workItem from="1556268818509" duration="1407000" />
       <workItem from="1557038876805" duration="14832000" />
       <workItem from="1557112180763" duration="719000" />
+      <workItem from="1557113008337" duration="973000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21438000" />
+    <option name="totallyTimeSpent" value="22411000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14517266" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14517266" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -276,11 +235,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html/music.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="721">
-          <caret line="123" column="6" selection-start-line="123" selection-start-column="6" selection-end-line="123" selection-end-column="6" />
+        <state relative-caret-position="1260">
+          <caret line="84" column="47" selection-start-line="84" selection-start-column="47" selection-end-line="84" selection-end-column="47" />
           <folding>
             <element signature="n#style#0;n#h1#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#button#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

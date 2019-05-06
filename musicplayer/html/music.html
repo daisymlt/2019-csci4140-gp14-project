@@ -64,17 +64,14 @@
               <img id="img" src="../image/play.png" style="height: 40px; width: auto" alt="Play/Pause"/>
           </button>
           <img src="../image/volume.png" style="height: 25px; width: auto; margin-right: 10px">
-          <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 25%">
+          <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
       </div>
     </div>
 </div>
 
 <script>
     const { ipcRenderer } = require('electron');
-    var song, noise, reverb;
-
-    var button = document;
-    var cVerb;
+    var song, noise, reverb, cVerb;
 
     var volume = document.getElementById("volume");
     var icon = document.getElementById("img");
@@ -84,10 +81,9 @@
 
     function preload() {
         song = loadSound("../audio/through-the-night.mp3");
+        noise = loadSound("../audio/cafe.mp3");
         // noise = loadSound("../audio/rain.mp3");
         // noise.setVolume(0.35); // rain parameter
-
-        noise = loadSound("../audio/cafe.mp3");
 
         cVerb = new p5.Convolver("../IMreverbs/Ruby Room.wav");
     }
@@ -97,13 +93,15 @@
         song.disconnect();
 
         // x second reverbTime, decayRate of x%
-        //cafe effect
-        reverb.process(song, 7, 60);
+        reverb.process(song, 8, 52); // cafe effect
+        /*
+        HERE ^^^^
+        I am wondering would the echo be too much if add cVerb effect also
+         */
 
-
-        // reverb.process(song, 2, 50); // rain parameter
-        // reverb.process(song, 3, 30); // cafe parameter
-        cVerb.process(song);
+        //reverb.process(song, 2, 50); // rain parameter
+        //reverb.process(song, 3, 30); // cafe parameter
+        //cVerb.process(song);
     }
 
     function togglePlaying() {

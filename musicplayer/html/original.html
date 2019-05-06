@@ -87,17 +87,6 @@
     function setup() {
         reverb = new p5.Reverb();
         song.disconnect();
-
-        /*
-        HERE: Cafe Effect
-        cVerb have more echo although two are similar :)
-         */
-        // x second reverbTime, decayRate of x%
-        // reverb.process(song, 8, 52);
-        //cVerb.process(song);
-
-        // rain parameter
-        // reverb.process(song, 2, 50);
     }
 
     function togglePlaying() {
@@ -119,10 +108,7 @@
         if (song.isPlaying()) {
             progress.value = (song.currentTime() / length) * 100;
         }
-    }, 1000);
-    // clearInterval(intrvl); // if it's needed
-
-    
+    }, 1000);    
 
     var app = require('electron').remote; 
     var dialog = app.dialog;

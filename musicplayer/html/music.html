@@ -1,0 +1,230 @@
+<script type="text/javascript" src="../js/sidebar.js"></script>
+
+<script language="JavaScript" type="text/javascript" src="../node_modules/p5/lib/p5.js"></script>
+<script type="text/javascript" src="../node_modules/p5/lib/addons/p5.sound.js"></script>
+
+<style>
+.song {
+    background: white;
+    border-radius: 13px;
+}
+
+.song h1 {
+    padding: 0.5em 0.8em;
+    text-align: center;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    display: inline;
+    width: auto;
+}
+
+.myslider {
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 4px;
+    background: #eeeeee;
+    display: inline;
+    -webkit-transition: .2s;
+    transition: background .2s;
+}
+.myslider:hover {
+    background: #4abbfc;
+}
+
+.myslider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 7px;
+    background: #454545;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+.column {
+    flex: 40%;
+    max-width: 30%;
+    margin-left: 1em;
+}
+.column img {
+    margin-top: 8px;
+    vertical-align: middle;
+    height: 110px;
+    width: auto;
+}
+
+</style>
+
+<div>
+    <h1 style="padding: 0.3em 1em;">Song Player</h1>
+
+    <div class="song">
+      <h1>Stay (Cafe)</h1>
+        <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
+        <div>
+
+            <button class="button" onclick="showModal();">
+                <img src="../image/noise.png" style="height: 42px; margin: 1em 1em 1em 2em" alt="White Noise Mode"/>
+            </button>
+            <!-- Modal content -->
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeModal();">&times;</span>
+
+                    <div class="row">
+                        <div class="column">
+                            <img src="../image/cafe.png">
+                            <img src="../image/library.png">
+                        </div>
+                        <div class="column">
+                            <img src="../image/campfire.png">
+                            <img src="../image/">
+                        </div>
+                        <div class="column">
+                            <img src="../image/rain.png">
+                            <img src="../image/concert.png">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+          <button class="button" onclick="togglePlaying();">
+              <img id="img" src="../image/play.png" style="height: 40px; margin: 1em 1.5em 1em 0em" alt="Play/Pause"/>
+          </button>
+          <img src="../image/volume.png" style="height: 25px; width: auto; margin-right: 10px">
+          <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var modal = document.getElementById('myModal');
+    function showModal() {
+        modal.style.display = "block";
+    }
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+
+    const { ipcRenderer } = require('electron');
+    var song, noise, reverb, cVerb, length;
+
+    var volume = document.getElementById("volume");
+    var icon = document.getElementById("img");
+    var progress = document.getElementById("progress");
+    var play = "../image/play.png";
+    var pause = "../image/pause.png";
+
+    var noisePath = [];
+    noisePath["cafe"] = "../audio/env/cafe(louder).mp3";
+    noisePath["campfire"] = "../audio/env/campfire.mp3";
+    noisePath["rain"] = "../audio/white_noise/rain.mp3";
+    noisePath["library"] = "../audio/env/library.mp3";
+    noisePath["concert"] = "../audio/env/concert.mp3";
+
+    function preload() {
+        song = loadSound("../audio/music/stay.m4a", loaded);
+
+        //noise = loadSound(noisePath["cafe"]);
+        noise = loadSound(noisePath["rain"]);
+        // noise.setVolume(0.35); // rain parameter
+
+        cVerb = new p5.Convolver("../IMreverbs/Ruby Room.wav");
+    }
+
+    function loaded() {
+        length = song.duration();
+    }
+
+    function setup() {
+        reverb = new p5.Reverb();
+        song.disconnect();
+
+        // x second reverbTime, decayRate of x%
+        //reverb.process(song, 7, 48);
+        //cVerb.process(song);
+
+        // rain parameter
+        reverb.process(song, 3, 50);
+    }
+
+    function togglePlaying() {
+        if (!song.isPlaying()) {
+            song.play();
+            icon.src = pause;
+            noise.play();
+        } else {
+            song.pause();
+            icon.src = play;
+            noise.pause();
+        }
+    }
+
+    volume.oninput = function () {
+        song.setVolume(this.value / 100);
+        noise.setVolume((this.value / 100) * 0.85);
+    };
+
+    var intrvl = setInterval( function(){
+        if (song.isPlaying()) {
+            progress.value = (song.currentTime() / length) * 100;
+        }
+    }, 1000);
+    // clearInterval(intrvl); // if it's needed
+
+</script>
+
+<script type="text/javascript" src="../js/sidebar2.js"></script>

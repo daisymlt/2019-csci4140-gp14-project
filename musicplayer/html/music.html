@@ -55,7 +55,7 @@
     <h1 style="padding: 0.3em 1em;">Song Player</h1>
 
     <div class="song">
-      <h1>Through the night</h1>
+      <h1>Through the night (Cafe)</h1>
         <div class="progressBar">
             <div id="progress"></div>
         </div>
@@ -70,7 +70,12 @@
 </div>
 
 <script>
-    var song, reverb;
+    const { ipcRenderer } = require('electron');
+    var song, noise, reverb;
+
+    var button = document;
+    var cVerb;
+
     var volume = document.getElementById("volume");
     var icon = document.getElementById("img");
     var progress = document.getElementById("progress");
@@ -79,6 +84,12 @@
 
     function preload() {
         song = loadSound("../audio/through-the-night.mp3");
+        // noise = loadSound("../audio/rain.mp3");
+        // noise.setVolume(0.35); // rain parameter
+
+        noise = loadSound("../audio/cafe.mp3");
+
+        cVerb = new p5.Convolver("../IMreverbs/Ruby Room.wav");
     }
 
     function setup() {
@@ -88,20 +99,28 @@
         // x second reverbTime, decayRate of x%
         //cafe effect
         reverb.process(song, 7, 60);
+
+
+        // reverb.process(song, 2, 50); // rain parameter
+        // reverb.process(song, 3, 30); // cafe parameter
+        cVerb.process(song);
     }
 
     function togglePlaying() {
         if (!song.isPlaying()) {
             song.play();
             icon.src = pause;
+            noise.play();
         } else {
             song.pause();
             icon.src = play;
+            noise.pause();
         }
     }
 
     volume.oninput = function () {
         song.setVolume(this.value / 100);
+        noise.setVolume(this.value / 100);
     };
 
 </script>

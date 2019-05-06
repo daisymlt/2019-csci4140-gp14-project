@@ -2,9 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba46d8c0-ed98-4d0f-8776-0da63ee2e5c5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Block Inside.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Bottle Hall.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Cement Blocks 1.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Cement Blocks 2.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Chateau de Logne, Outside.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Conic Long Echo Hall.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Deep Space.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Derlon Sanctuary.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Direct Cabinet N1.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Direct Cabinet N2.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Direct Cabinet N3.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Direct Cabinet N4.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Five Columns Long.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Five Columns.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/French 18th Century Salon.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Going Home.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Greek 7 Echo Hall.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Highly Damped Large Room.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/In The Silo Revised.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/In The Silo.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Large Bottle Hall.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Large Long Echo Hall.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Large Wide Echo Hall.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Masonic Lodge.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Musikvereinsaal.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Narrow Bumpy Space.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Nice Drum Room.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/On a Star.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Parking Garage.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Rays.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Right Glass Triangle.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Ruby Room.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Scala Milan Opera Hall.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Small Drum Room.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Small Prehistoric Cave.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/St Nicolaes Church.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Trig Room.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/Vocal Duo.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IMreverbs/license.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/cafe(louder).mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/audio/cafe.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/music.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/music.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/pause.png" beforeDir="false" afterPath="$PROJECT_DIR$/image/pause.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image/play.png" beforeDir="false" afterPath="$PROJECT_DIR$/image/play.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -26,10 +67,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/music.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="498">
-              <caret line="95" column="29" lean-forward="true" selection-start-line="95" selection-start-column="29" selection-end-line="95" selection-end-column="29" />
+            <state relative-caret-position="721">
+              <caret line="123" column="6" selection-start-line="123" selection-start-column="6" selection-end-line="123" selection-end-column="6" />
               <folding>
                 <element signature="n#style#0;n#h1#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#button#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -52,7 +94,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="x" value="742" />
     <option name="width" value="698" />
     <option name="height" value="900" />
@@ -65,7 +107,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -97,6 +138,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -138,17 +180,18 @@
       <workItem from="1555609713760" duration="58000" />
       <workItem from="1556268818509" duration="1407000" />
       <workItem from="1557038876805" duration="14832000" />
+      <workItem from="1557112180763" duration="719000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20719000" />
+    <option name="totallyTimeSpent" value="21438000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="726" y="0" width="714" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.1455458" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14517266" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -233,10 +276,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html/music.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="95" column="29" lean-forward="true" selection-start-line="95" selection-start-column="29" selection-end-line="95" selection-end-column="29" />
+        <state relative-caret-position="721">
+          <caret line="123" column="6" selection-start-line="123" selection-start-column="6" selection-end-line="123" selection-end-column="6" />
           <folding>
             <element signature="n#style#0;n#h1#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#button#0;n#div#1;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

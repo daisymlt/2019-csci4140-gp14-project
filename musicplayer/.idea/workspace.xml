@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ba46d8c0-ed98-4d0f-8776-0da63ee2e5c5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/html/music.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/music.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/pause.png" beforeDir="false" afterPath="$PROJECT_DIR$/image/pause.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image/play.png" beforeDir="false" afterPath="$PROJECT_DIR$/image/play.png" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,27 +23,13 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/about.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/fav.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/music.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="498">
+              <caret line="95" column="29" lean-forward="true" selection-start-line="95" selection-start-column="29" selection-end-line="95" selection-end-column="29" />
               <folding>
-                <element signature="n#style#0;n#img#0;n#button#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -59,6 +47,7 @@
         <option value="$PROJECT_DIR$/html/about.html" />
         <option value="$PROJECT_DIR$/js/sidebar.js" />
         <option value="$PROJECT_DIR$/node_modules/boostrap/package.json" />
+        <option value="$PROJECT_DIR$/node_modules/p5/lib/p5.js" />
         <option value="$PROJECT_DIR$/html/music.html" />
       </list>
     </option>
@@ -148,18 +137,18 @@
       <workItem from="1555582952952" duration="858000" />
       <workItem from="1555609713760" duration="58000" />
       <workItem from="1556268818509" duration="1407000" />
-      <workItem from="1557038876805" duration="6599000" />
+      <workItem from="1557038876805" duration="14832000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12486000" />
+    <option name="totallyTimeSpent" value="20719000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="784" y="0" width="656" height="900" extended-state="6" />
+    <frame x="726" y="0" width="714" height="900" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.14645669" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.1455458" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -200,16 +189,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/index.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/about.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/main_style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="810">
@@ -230,12 +209,34 @@
     <entry file="file://$PROJECT_DIR$/html/fav.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/html/about.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="28" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/p5/lib/p5.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5167">
+          <caret line="83507" selection-start-line="83507" selection-end-line="83507" />
+          <folding>
+            <element signature="e#984#989#0" expanded="true" />
+            <element signature="e#1018#1024#0" expanded="true" />
+            <element signature="e#1037#1043#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/html/music.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+        <state relative-caret-position="498">
+          <caret line="95" column="29" lean-forward="true" selection-start-line="95" selection-start-column="29" selection-end-line="95" selection-end-column="29" />
           <folding>
-            <element signature="n#style#0;n#img#0;n#button#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -5,28 +5,27 @@
 
 <style>
 .song {
-    border: 3px#cccccc dashed;
+    background: white;
+    border-radius: 13px;
 }
 
 .song h1 {
-    padding: 0.5em;
+    padding: 0.5em 0.8em;
 }
 
 .button {
-    background-color: #ffffff;
+    background-color: transparent;
     border: none;
-    padding: 10px 25px;
-    display: inline-block;
+    display: inline;
     margin: 1em 1em;
 }
 
 .myslider {
     -webkit-appearance: none;
-    width: 30%;
     height: 6px;
     border-radius: 4px;
     background: #0b0b0b;
-    display: inline-block;
+    display: inline;
     -webkit-transition: .2s;
     transition: background .2s;
 }
@@ -34,43 +33,76 @@
     background: #2990c9;
 }
 
+.progressBar {
+    margin: 1em 2.5em 1em 2.5em;
+    width: 80%;
+    height: 6px;
+    border-radius: 4px;
+    background: #e3e3e3;
+    display: inline-block;
+}
+
+#progress {
+    width: 5%;
+    height: 7px;
+    border-radius: 4px;
+    background-color: #2ea1e1;
+}
+
 </style>
 
 <div>
-    <h1>Song Player</h1>
+    <h1 style="padding: 0.3em 1em;">Song Player</h1>
 
     <div class="song">
       <h1>Through the night</h1>
+        <div class="progressBar">
+            <div id="progress"></div>
+        </div>
       <div>
           <button class="button" onclick="togglePlaying();">
-              <img src="../image/play.png" style="height: 30px; width: auto"/>
+              <img id="img" src="../image/play.png" style="height: 40px; width: auto" alt="Play/Pause"/>
           </button>
-          Volume <input type="range" class="myslider" min="0" max="100" value="100" id="volume">
+          <img src="../image/volume.png" style="height: 25px; width: auto; margin-right: 10px">
+          <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 25%">
       </div>
     </div>
 </div>
 
 <script>
-    var song, noise;
+    var song, reverb;
     var volume = document.getElementById("volume");
-    var button = document;
+    var icon = document.getElementById("img");
+    var progress = document.getElementById("progress");
+    var play = "../image/play.png";
+    var pause = "../image/pause.png";
+
+    function preload() {
+        song = loadSound("../audio/through-the-night.mp3");
+    }
 
     function setup() {
-        song = loadSound("../audio/through-the-night.mp3");
-        noise = loadSound("");
+        reverb = new p5.Reverb();
+        song.disconnect();
+
+        // x second reverbTime, decayRate of x%
+        //cafe effect
+        reverb.process(song, 7, 60);
     }
 
     function togglePlaying() {
         if (!song.isPlaying()) {
             song.play();
+            icon.src = pause;
         } else {
             song.pause();
+            icon.src = play;
         }
     }
 
     volume.oninput = function () {
         song.setVolume(this.value / 100);
-    }
+    };
 
 </script>
 

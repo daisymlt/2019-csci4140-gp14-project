@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba46d8c0-ed98-4d0f-8776-0da63ee2e5c5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/cosmic.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio/stay.m4a" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/html/music.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/music.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
@@ -40,8 +41,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/html/music.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="310">
-                  <caret line="93" column="13" lean-forward="true" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="13" />
+                <state relative-caret-position="451">
+                  <caret line="182" column="29" lean-forward="true" selection-start-line="182" selection-start-column="29" selection-end-line="182" selection-end-column="29" />
                   <folding>
                     <element signature="n#style#0;n#h1#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -162,12 +163,12 @@
       <workItem from="1557112180763" duration="719000" />
       <workItem from="1557113008337" duration="3398000" />
       <workItem from="1557130488921" duration="3787000" />
-      <workItem from="1557140234150" duration="1060000" />
+      <workItem from="1557140234150" duration="1193000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29683000" />
+    <option name="totallyTimeSpent" value="29816000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -265,8 +266,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html/music.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="93" column="13" lean-forward="true" selection-start-line="93" selection-start-column="13" selection-end-line="93" selection-end-column="13" />
+        <state relative-caret-position="451">
+          <caret line="182" column="29" lean-forward="true" selection-start-line="182" selection-start-column="29" selection-end-line="182" selection-end-column="29" />
           <folding>
             <element signature="n#style#0;n#h1#0;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#!!top" expanded="true" />

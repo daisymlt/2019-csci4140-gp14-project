@@ -1,5 +1,157 @@
 <script type="text/javascript" src="../js/sidebar.js"></script>
+
+<script language="JavaScript" type="text/javascript" src="../node_modules/p5/lib/p5.js"></script>
+<script type="text/javascript" src="../node_modules/p5/lib/addons/p5.sound.js"></script>
+
+<style>
+.song {
+    background: white;
+    border-radius: 13px;
+}
+
+.song h1 {
+    padding: 0.5em 0.8em;
+}
+
+.button {
+    background-color: transparent;
+    border: none;
+    display: inline;
+    margin: 1em 1em;
+}
+
+.myslider {
+    -webkit-appearance: none;
+    height: 6px;
+    border-radius: 4px;
+    background: #f5f5f5;
+    display: inline;
+    -webkit-transition: .2s;
+    transition: background .2s;
+}
+.myslider:hover {
+    background: #4abbfc;
+}
+
+.myslider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 7px;
+    background: #454545;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+}
+
+</style>
+
+<div>
+    <h1 style="padding: 0.3em 1em;">Song Player</h1>
+
+    <div style="text-align:center;">
+            <input type="text" placeholder="Please select a file" id="actual-file" disabled="disabled"/>
+            <input type="button" value="Choose a file" id="select-file"/>
+    </div>
+
+    <div class="song">
+      <h1 id="songName">Please select a song</h1>
+        <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
+        <div>
+          <button class="button" onclick="togglePlaying();">
+              <img id="img" src="../image/play.png" style="height: 40px; width: auto" alt="Play/Pause"/>
+          </button>
+          <img src="../image/volume.png" style="height: 25px; width: auto; margin-right: 10px">
+          <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
+      </div>
+    </div>
+</div>
+
+<script>
+    const { ipcRenderer } = require('electron');
+    var song, noise, reverb, cVerb;
+
+    var volume = document.getElementById("volume");
+    var icon = document.getElementById("img");
+    var progress = document.getElementById("progress");
+    var play = "../image/play.png"; var pause = "../image/pause.png";
+
+    var length;
+
+    function preload(filepath) {
+        song = loadSound(filepath, loaded);
+    }
+
+    function loaded() {
+        length = song.duration();
+    }
+
+    function setup() {
+        reverb = new p5.Reverb();
+        song.disconnect();
+
+        /*
+        HERE: Cafe Effect
+        cVerb have more echo although two are similar :)
+         */
+        // x second reverbTime, decayRate of x%
+        // reverb.process(song, 8, 52);
+        //cVerb.process(song);
+
+        // rain parameter
+        // reverb.process(song, 2, 50);
+    }
+
+    function togglePlaying() {
+        if (!song.isPlaying()) {
+            song.play();
+            icon.src = pause;
+        } else {
+            song.pause();
+            icon.src = play;
+        }
+    }
+
+    volume.oninput = function () {
+        song.setVolume(this.value / 100);
+        noise.setVolume(this.value / 100);
+    };
+
+    var intrvl = setInterval( function(){
+        if (song.isPlaying()) {
+            progress.value = (song.currentTime() / length) * 100;
+        }
+    }, 1000);
+    // clearInterval(intrvl); // if it's needed
+
     
-<h1>Original Music</h1>
+
+    var app = require('electron').remote; 
+    var dialog = app.dialog;
+    var fs = require('fs');
+                
+    document.getElementById('select-file').addEventListener('click',function(){
+        dialog.showOpenDialog(function (fileNames) {
+            console.log(fileNames);
+            if(fileNames === undefined){
+                console.log("No file selected");
+            }else{
+                document.getElementById("actual-file").value = fileNames[0];
+                readFile(fileNames[0]);
+                console.log(document.getElementById("actual-file").value);
+                preload(document.getElementById("actual-file").value);
+                document.getElementById('songName').innerHTML = fileNames[0];
+            }
+        }); 
+    },false);
+
+    function readFile(filepath) {
+        fs.readFile(filepath, 'utf-8', function (err, data) {
+            if(err){
+                alert("An error ocurred reading the file :" + err.message);
+                return;
+            }
+        });
+    }
+
+</script>
 
 <script type="text/javascript" src="../js/sidebar2.js"></script>

@@ -17,14 +17,14 @@
     background-color: transparent;
     border: none;
     display: inline;
-    width: auto;
+    margin: 1em 1em;
 }
 
 .myslider {
     -webkit-appearance: none;
     height: 6px;
     border-radius: 4px;
-    background: #eeeeee;
+    background: #f5f5f5;
     display: inline;
     -webkit-transition: .2s;
     transition: background .2s;
@@ -42,62 +42,6 @@
     box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
 }
 
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 4px;
-}
-.column {
-    flex: 40%;
-    max-width: 30%;
-    padding: 0 4px;
-    margin-left: 1em;
-}
-.column img {
-    margin-top: 8px;
-    vertical-align: middle;
-    height: 120px;
-    width: auto;
-}
-
 </style>
 
 <div>
@@ -107,75 +51,25 @@
       <h1>Through the night (Cafe)</h1>
         <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
         <div>
-
-            <button class="button" onclick="showModal();">
-                <img src="../image/noise.png" style="height: 42px; margin: 1em 1em 1em 2em" alt="White Noise Mode"/>
-            </button>
-            <!-- Modal content -->
-            <div id="myModal" class="modal">
-                <div class="modal-content">
-                    <span class="close" onclick="closeModal();">&times;</span>
-
-                    <div class="row">
-                        <div class="column">
-                            <img src="../image/cafe.png">
-                            <img src="../image/rain.png">
-                        </div>
-                        <div class="column">
-                            <img src="./images/img3.jpg">
-                            <img src="./images/img6.jpg">
-                        </div>
-                        <div class="column">
-                            <img src="./images/img4.jpg">
-                            <img src="./images/img7.jpg">
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
           <button class="button" onclick="togglePlaying();">
-              <img id="img" src="../image/play.png" style="height: 40px; margin: 1em 1.5em 1em 0em" alt="Play/Pause"/>
+              <img id="img" src="../image/play.png" style="height: 40px; width: auto" alt="Play/Pause"/>
           </button>
           <img src="../image/volume.png" style="height: 25px; width: auto; margin-right: 10px">
           <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
-        </div>
+      </div>
     </div>
-
-
-
-    <input type="file" id="file-uploader" data-target="file-uploader"/>
 </div>
 
 <script>
-    var modal = document.getElementById('myModal');
-    function showModal() {
-        modal.style.display = "block";
-    }
-    function closeModal() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    };
-
-    const fileUploader = document.querySelector('#file-uploader');
-
-    fileUploader.addEventListener('change', (e) => {
-        document.write(e.target.files); // get file object
-    });
-
     const { ipcRenderer } = require('electron');
-    var song, noise, reverb, cVerb, length;
+    var song, noise, reverb, cVerb;
 
     var volume = document.getElementById("volume");
     var icon = document.getElementById("img");
     var progress = document.getElementById("progress");
     var play = "../image/play.png"; var pause = "../image/pause.png";
+
+    var length;
 
     function preload() {
         song = loadSound("../audio/through-the-night.mp3", loaded);

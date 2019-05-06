@@ -15,5 +15,6 @@ document.write('<li><a href="music.html">Combined Mode</a></li>' +
     // '<li><a href="http://www.youtube.com">Youtube (wont go back)</a></li>' +
     '<li><a href="white.html">White Noise</a></li>');
 document.write('<li><a href="about.html">About</a></li></ul></nav>' +
-    '<div id="content"><nav class="navbar navbar-expand-lg navbar-light bg-light">' +
+    '<div id="content">' + 
+    '<nav class="navbar navbar-expand-lg navbar-light bg-light">' +
     '<div class="container-fluid"></div>');

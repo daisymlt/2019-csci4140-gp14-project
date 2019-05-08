@@ -149,9 +149,7 @@
         }); 
     },false);
 
-    console.log("???");
     var music_path = document.getElementById('songName').innerHTML;
-    console.log(music_path);
 
     function readFile(filepath) {
         fs.readFile(filepath, 'utf-8', function (err, data) {
@@ -177,30 +175,24 @@
     }, 1000);
 
     const dirPath = 'audio/user_upload';
-
-    // fs.readdir(dirPath, (err, dir)=>{
-    //     console.log(dir);
-    //     for(var i=0; i<dir.length; i++){
-    //         fileName = dir[i];
-    //         console.log(fileName);
-    //     }
-    // });
-
     const music_list = fs.readdirSync(dirPath);
 
-    for(var i=0; i < music_list.length; i++){
-        console.log(music_list[i]);
-    }
+    // for(var i=0; i < music_list.length; i++){
+    //     console.log(music_list[i]);
+    // }
 
     var nHTML = '';
 
-    music_list.forEach(function(item) {
-        if(item != ".DS_Store")
-            nHTML += '<li><p class="songName" id="' + item + '" onClick=playSong(this.id) style="padding:0; margin:0; line-height:12px;">' + item + '</a></li>';
-    });
-
-
-    document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
+    if(music_list.length == 1){
+        document.getElementById("music_list").innerHTML = "<p>File empty...</p>";
+    }
+    else{
+        music_list.forEach(function(item) {
+            if(item != ".DS_Store")
+                nHTML += '<li><p class="songName" id="' + item + '" onClick=playSong(this.id) style="padding:0; margin:0; line-height:12px;">' + item + '</a></li>';
+        });
+        document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
+    }
 
 </script>
 

@@ -103,7 +103,7 @@
     <h1 style="padding: 0.3em 1em;">Song Player</h1>
 
     <div class="song">
-      <h1>Stay (Cafe)</h1>
+      <h1>Combined Mode</h1>
         <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
         <div>
 
@@ -159,6 +159,7 @@
         }
     };
 
+
     const { ipcRenderer } = require('electron');
     var song, noise, reverb, cVerb, length;
 
@@ -176,13 +177,12 @@
     noisePath["concert"] = "../audio/env/concert.mp3";
 
     function preload() {
-        song = loadSound("../audio/music/stay.m4a", loaded);
+        // maybe for CONCERT
+        cVerb = new p5.Convolver("../IMreverbs/Narrow Bumpy Space.wav");
 
+
+        song = loadSound("../audio/music/cosmic.mp3", loaded);
         //noise = loadSound(noisePath["cafe"]);
-        noise = loadSound(noisePath["rain"]);
-        // noise.setVolume(0.35); // rain parameter
-
-        cVerb = new p5.Convolver("../IMreverbs/Ruby Room.wav");
     }
 
     function loaded() {
@@ -190,15 +190,19 @@
     }
 
     function setup() {
-        reverb = new p5.Reverb();
-        song.disconnect();
-
         // x second reverbTime, decayRate of x%
-        //reverb.process(song, 7, 48);
-        //cVerb.process(song);
+        reverb = new p5.Reverb();
+        //song.disconnect();
 
-        // rain parameter
-        reverb.process(song, 3, 50);
+        // CAFE
+        //reverb.process(song, 7, 48);
+
+        // RAIN
+        //reverb.process(song, 3, 50);
+
+        //CONCERT
+        noise.setVolume(0.5);
+        //cVerb.process(song);
     }
 
     function togglePlaying() {
@@ -215,7 +219,16 @@
 
     volume.oninput = function () {
         song.setVolume(this.value / 100);
-        noise.setVolume((this.value / 100) * 0.85);
+        //noise.setVolume((this.value / 100));
+
+        // LOW VOLUME
+        noise.setVolume((this.value / 100) * 0.5);
+    };
+
+    progress.oninput = function () {
+        song.pause();
+        icon.src = play;
+        song.jump(this.value, length);
     };
 
     var intrvl = setInterval( function(){

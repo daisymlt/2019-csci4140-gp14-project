@@ -7,10 +7,12 @@
 .song {
     background: white;
     border-radius: 13px;
+    width: 400px;
 }
 
-.song h1 {
+.song h2 {
     padding: 0.5em 0.8em;
+    text-align: center;
 }
 
 .button {
@@ -60,13 +62,13 @@
     <hr>
 
     <div class="song">
-      <h4 id="songName">Please select a song</h4>
+      <h2 id="songName">Please select a song</h2>
         <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
         <div>
           <button class="button" onclick="togglePlaying();">
-              <img id="img" src="../image/play.png" style="height: 40px; width: auto" alt="Play/Pause"/>
+              <img id="img" src="../image/player/play.png" style="height: 40px; width: auto; margin: 0.5em 1em 0.5em 1.5em" alt="Play/Pause"/>
           </button>
-          <img src="../image/volume.png" style="height: 25px; width: auto; margin-right: 10px">
+          <img src="../image/player/volume.png" style="height: 25px; width: auto; margin-right: 10px">
           <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
       </div>
     </div>
@@ -79,7 +81,8 @@
     var volume = document.getElementById("volume");
     var icon = document.getElementById("img");
     var progress = document.getElementById("progress");
-    var play = "../image/play.png"; var pause = "../image/pause.png";
+    var play = "../image/player/play.png";
+    var pause = "../image/player/pause.png";
 
     var length;
 

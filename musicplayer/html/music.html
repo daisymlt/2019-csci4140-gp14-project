@@ -43,9 +43,6 @@
     box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
 }
 
-.noise {
-}
-
 .noise img {
     height: 50px;
     width: auto;
@@ -64,15 +61,15 @@
 <div>
     <h1 style="padding: 0.3em 1em;">Combined Player</h1>
 
-    <div class="song">
+    <div class="song" id="bkcolor">
       <h1>Cosmic</h1>
         <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
         <div>
 
           <button class="button" onclick="togglePlaying();">
-              <img id="img" src="../image/play.png" style="height: 40px; width: auto; margin: 1em 1.5em 1em 1.5em" alt="Play/Pause"/>
+              <img id="img" src="../image/player/play.png" style="height: 40px; width: auto; margin: 1em 1.5em 1em 1.5em" alt="Play/Pause"/>
           </button>
-          <img src="../image/volume.png" style="height: 25px; width: auto; margin-right: 10px">
+          <img src="../image/player/volume.png" style="height: 25px; width: auto; margin-right: 10px">
           <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
         </div>
     </div>
@@ -86,7 +83,7 @@
             <img src="../image/rain.png">
         </button>
         <img src="../image/library.png" onclick="">
-        <img src="../image/">
+        <img src="../image/wine.png">
         <button class="button" onclick="loadConcert();">
             <img src="../image/concert.png">
         </button>
@@ -96,13 +93,15 @@
 
 <script>
     const { ipcRenderer } = require('electron');
-    var song, noise, reverb, cVerb, length;
+    var song, noise, reverb, cVerb, length, bpm;
 
     var volume = document.getElementById("volume");
     var icon = document.getElementById("img");
     var progress = document.getElementById("progress");
-    var play = "../image/play.png";
-    var pause = "../image/pause.png";
+    var bkcolor = document.getElementById("bkcolor");
+    //linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)
+    var play = "../image/player/play.png";
+    var pause = "../image/player/pause.png";
     var volumeWeight = 1;
 
     var noisePath = [];
@@ -110,6 +109,7 @@
     noisePath["library"] = "../audio/env/library.mp3";
 
     function loadCafe() {
+        bkcolor.background = "#B1806A";
         song.disconnect();
         reverb.process(song, 7, 48);
 
@@ -154,6 +154,8 @@
 
     function loaded() {
         length = song.duration();
+        bpm = song.getBPM();
+        console.log(bpm);
     }
 
     function setup() {

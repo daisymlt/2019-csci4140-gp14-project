@@ -48,12 +48,19 @@
     <h1 style="padding: 0.3em 1em;">Song Player</h1>
 
     <div style="text-align:center;">
-            <input type="text" placeholder="Please select a file" id="actual-file" disabled="disabled"/>
-            <input type="button" value="Choose a file" id="select-file"/>
+        <input type="text" placeholder="Please select a file" id="actual-file" disabled="disabled"/>
+        <input type="button" value="Upload new music" id="select-file"/>
     </div>
 
+    <hr>
+
+    <div id="music_list" style="width: 400px; height: 100px; overflow-y: scroll;">
+    </div>
+
+    <hr>
+
     <div class="song">
-      <h1 id="songName">Please select a song</h1>
+      <h4 id="songName">Please select a song</h4>
         <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
         <div>
           <button class="button" onclick="togglePlaying();">
@@ -137,6 +144,31 @@
             }
         });
     }
+
+    const dirPath = 'audio/user_upload';
+
+    // fs.readdir(dirPath, (err, dir)=>{
+    //     console.log(dir);
+    //     for(var i=0; i<dir.length; i++){
+    //         fileName = dir[i];
+    //         console.log(fileName);
+    //     }
+    // });
+
+    const music_list = fs.readdirSync(dirPath);
+
+    for(var i=0; i < music_list.length; i++){
+        console.log(music_list[i]);
+    }
+
+    var nHTML = '';
+
+    music_list.forEach(function(item) {
+        if(item != ".DS_Store")
+            nHTML += '<li>' + item + '</li>';
+    });
+
+    document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
 
 </script>
 

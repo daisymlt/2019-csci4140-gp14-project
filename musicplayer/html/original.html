@@ -42,6 +42,10 @@
     box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
 }
 
+.songName:hover{
+    text-decoration: underline;
+}
+
 </style>
 
 <div>
@@ -53,7 +57,7 @@
     </div>
 
     <hr>
-
+    <h5>- Uploaded Songs - (sorted by alphabet)</h5>
     <div id="music_list" style="width: 400px; height: 100px; overflow-y: scroll;">
     </div>
 
@@ -73,6 +77,7 @@
 </div>
 
 <script>
+    const { webContents } = require('electron');
     const { ipcRenderer } = require('electron');
     var song, noise, reverb, cVerb;
 
@@ -128,13 +133,25 @@
                 console.log("No file selected");
             }else{
                 document.getElementById("actual-file").value = fileNames[0];
-                readFile(fileNames[0]);
-                console.log(document.getElementById("actual-file").value);
-                preload(document.getElementById("actual-file").value);
-                document.getElementById('songName').innerHTML = fileNames[0];
+                music_path = fileNames[0];
+                readFile(music_path);
+                // preload(music_path.value);
+                
+
+                var music_name = music_path.toString().substring(music_path.toString().lastIndexOf('/')+1);
+
+                fs.copyFile(music_path.toString(), 'audio/user_upload/'+music_name, (err) => {
+                    if (err) throw err;
+                    console.log('music was copied to destination');
+                });
+                app.getCurrentWindow().reload();
             }
         }); 
     },false);
+
+    console.log("???");
+    var music_path = document.getElementById('songName').innerHTML;
+    console.log(music_path);
 
     function readFile(filepath) {
         fs.readFile(filepath, 'utf-8', function (err, data) {
@@ -144,6 +161,20 @@
             }
         });
     }
+
+    function playSong(song_id){
+        song.disconnect();
+        icon.src = play;
+        progress.value = 0;
+        preload("../audio/user_upload/" + song_id);
+        document.getElementById('songName').innerHTML = song_id;  
+    }
+
+    var intrvl = setInterval( function(){
+        if (song.isPlaying()) {
+            progress.value = (song.currentTime() / length) * 100;
+        }
+    }, 1000);
 
     const dirPath = 'audio/user_upload';
 
@@ -165,8 +196,9 @@
 
     music_list.forEach(function(item) {
         if(item != ".DS_Store")
-            nHTML += '<li>' + item + '</li>';
+            nHTML += '<li><p class="songName" id="' + item + '" onClick=playSong(this.id) style="padding:0; margin:0; line-height:12px;">' + item + '</a></li>';
     });
+
 
     document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
 

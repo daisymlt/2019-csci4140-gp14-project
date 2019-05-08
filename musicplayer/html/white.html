@@ -1,5 +1,8 @@
 <script type="text/javascript" src="../js/sidebar.js"></script>
 
+<script language="JavaScript" type="text/javascript" src="../node_modules/p5/lib/p5.js"></script>
+<script type="text/javascript" src="../node_modules/p5/lib/addons/p5.sound.js"></script>
+
 <style>
     .panel {
         display: flex;
@@ -19,8 +22,15 @@
         opacity: 1;
     }
 
+    .button {
+        background-color: transparent;
+        border: none;
+        display: inline;
+    }
+
     .myslider {
         -webkit-appearance: none;
+        width: 45%;
         height: 6px;
         border-radius: 4px;
         background: #eeeeee;
@@ -46,31 +56,70 @@
 
 <div class="panel">
     <div>
-        <img src="../image/ocean.png">
-        <input type="range" class="myslider" min="0" max="100" value="50" style="width: 40%">
+        <button class="button" onclick='clickPlay("ocean");'>
+            <img src="../image/ocean.png">
+        </button>
+            <input type="range" class="myslider" min="0" max="100" value="50">
     </div>
     <div>
-        <img src="../image/rain.png">
-        <input type="range" class="myslider" min="0" max="100" value="50" style="width: 40%">
+        <button class="button" onclick='clickPlay("rain");'>
+            <img src="../image/rain.png">
+        </button>
+        <input type="range" class="myslider" min="0" max="100" value="50">
     </div>
     <div>
-        <img src="../image/thunder.png">
-        <input type="range" class="myslider" min="0" max="100" value="50" style="width: 40%">
+        <button class="button" onclick='clickPlay("thunder");'>
+            <img src="../image/thunder.png">
+        </button>
+        <input type="range" class="myslider" min="0" max="100" value="50">
     </div>
-    <div class="column">
-        <img src="../image/noise.png">
-        <input type="range" class="myslider" min="0" max="100" value="50" style="width: 40%">
+    <div>
+        <button class="button" onclick='clickPlay("wave");'>
+            <img src="../image/noise.png">
+        </button>
+        <input type="range" class="myslider" min="0" max="100" value="50">
     </div>
-    <div class="column">
-        <img src="../image/rail.png">
-        <input type="range" class="myslider" min="0" max="100" value="50" style="width: 40%">
+    <div>
+        <button class="button" onclick='clickPlay("rail");'>
+            <img src="../image/rail.png">
+        </button>
+        <input type="range" class="myslider" min="0" max="100" value="50">
     </div>
-    <div class="column">
-        <img src="../image/forest.png">
-        <input type="range" class="myslider" min="0" max="100" value="50" style="width: 40%">
+    <div>
+        <button class="button" onclick='clickPlay("forest");'>
+            <img src="../image/forest.png">
+        </button>
+        <input type="range" class="myslider" min="0" max="100" value="50">
     </div>
 </div>
 
-<script type="text/javascript" src="../js/sketch.js"></script>
+<script>
+    var noisePath = [], noiseObject = [];
+    noisePath["ocean"] = "../audio/white_noise/ocean.mp3";
+    noisePath["rain"] = "../audio/white_noise/rain.mp3";
+    noisePath["thunder"] = "../audio/white_noise/thunder.mp3";
+    noisePath["wave"] = "../audio/white_noise/pure-white-noise.mp3";
+    noisePath["rail"] = "../audio/white_noise/train.mp3";
+    noisePath["forest"] = "../audio/white_noise/leaf.mp3";
+
+    var sliderSet = document.getElementsByClassName("myslider");
+    console.log(sliderSet);
+
+    function setup() {
+        for (var key in noisePath) {
+            noiseObject[key] = loadSound(noisePath[key]);
+        }
+    }
+
+    function clickPlay(key) {
+        if (!noiseObject[key].isPlaying()) {
+            noiseObject[key].play();
+        } else {
+            noiseObject[key].pause();
+        }
+    }
+
+    
+</script>
 
 <script type="text/javascript" src="../js/sidebar2.js"></script><script type="text/javascript" src="../js/sidebar.js"></script>

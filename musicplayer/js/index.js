@@ -1,0 +1,1 @@
+module.exports = require('../node_modules/youtube-mp3-downloader/lib/YoutubeMp3Downloader');

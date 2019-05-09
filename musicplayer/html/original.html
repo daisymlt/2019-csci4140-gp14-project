@@ -54,7 +54,7 @@
     <!-- <h1 style="padding: 0.3em 1em;">Song Player</h1> -->
 
     <div style="text-align:left;">
-        <input type="text" placeholder="Please select a file" id="actual-file" disabled="disabled"/>
+        <!-- <input type="text" placeholder="Please select a file" id="actual-file" disabled="disabled"/> -->
         <input type="button" value="Upload new music" id="select-file"/>
     </div>
     <br>
@@ -78,6 +78,7 @@
           </button>
           <img src="../image/player/volume.png" style="height: 25px; width: auto; margin-right: 10px">
           <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
+          <input type="button" value="Delete music" id="delete-file"/>
       </div>
     </div>
 </div>
@@ -120,7 +121,6 @@
 
     volume.oninput = function () {
         song.setVolume(this.value / 100);
-        noise.setVolume(this.value / 100);
     };
 
     var intrvl = setInterval( function(){
@@ -139,7 +139,7 @@
             if(fileNames === undefined){
                 console.log("No file selected");
             }else{
-                document.getElementById("actual-file").value = fileNames[0];
+                // document.getElementById("actual-file").value = fileNames[0];
                 music_path = fileNames[0];
                 readFile(music_path);
                 // preload(music_path.value);
@@ -154,6 +154,27 @@
                 app.getCurrentWindow().reload();
             }
         }); 
+    },false);
+
+    document.getElementById('delete-file').addEventListener('click',function(){
+        var filepath = "audio/user_upload/" + document.getElementById('songName').textContent;
+
+        console.log(filepath);
+
+        if (fs.existsSync(filepath)) {
+            fs.unlink(filepath, (err) => {
+                if (err) {
+                    alert("An error ocurred updating the file" + err.message);
+                    console.log(err);
+                    return;
+                }
+                console.log("File succesfully deleted");
+                app.getCurrentWindow().reload();
+            });
+        } else {
+            alert("This file doesn't exist, cannot delete");
+        }
+
     },false);
 
     var music_path = document.getElementById('songName').innerHTML;

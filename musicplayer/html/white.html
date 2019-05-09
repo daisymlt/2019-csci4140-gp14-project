@@ -13,7 +13,7 @@
         height: 70px;
         width: auto;
         margin: 1.5em 1.5em 1em 1.5em;
-        opacity: 0.4;
+        opacity: 0.3;
         -webkit-transition: .2s;
         transition: opacity .2s;
     }
@@ -122,8 +122,10 @@
     function clickPlay(key) {
         if (!noiseObject[key].isPlaying()) {
             noiseObject[key].play();
+            imgSet[noiseIndex[key]].style.opacity = "1";
         } else {
             noiseObject[key].pause();
+            imgSet[noiseIndex[key]].style.opacity = "0.3";
         }
     }
 
@@ -146,6 +148,12 @@
         noiseObject["forest"].setVolume(this.value / 100);
     };
 
+    /*
+
+        TO DO:
+        MAKE THE WHITE NOISE LOOP ITSELF
+
+     */
     
 </script>
 

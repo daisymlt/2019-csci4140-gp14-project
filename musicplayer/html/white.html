@@ -94,7 +94,10 @@
 </div>
 
 <script>
-    var noisePath = [], noiseObject = [];
+    var noisePath = [], noiseObject = [], noiseIndex = [];
+    var sliderSet = document.getElementsByClassName("myslider");
+    var imgSet = document.getElementsByClassName("panel")[0].getElementsByTagName("img");
+
     noisePath["ocean"] = "../audio/white_noise/ocean.mp3";
     noisePath["rain"] = "../audio/white_noise/rain.mp3";
     noisePath["thunder"] = "../audio/white_noise/thunder.mp3";
@@ -102,12 +105,17 @@
     noisePath["rail"] = "../audio/white_noise/train.mp3";
     noisePath["forest"] = "../audio/white_noise/leaf.mp3";
 
-    var sliderSet = document.getElementsByClassName("myslider");
-    console.log(sliderSet);
+    noiseIndex["ocean"] = 0;
+    noiseIndex["rain"] = 1;
+    noiseIndex["thunder"] = 2;
+    noiseIndex["wave"] = 3;
+    noiseIndex["rail"] = 4;
+    noiseIndex["forest"] = 5;
 
     function setup() {
         for (var key in noisePath) {
             noiseObject[key] = loadSound(noisePath[key]);
+            noiseObject[key].setVolume(0.5);
         }
     }
 
@@ -118,6 +126,25 @@
             noiseObject[key].pause();
         }
     }
+
+    sliderSet[noiseIndex["ocean"]].oninput = function () {
+        noiseObject["ocean"].setVolume(this.value / 100);
+    };
+    sliderSet[noiseIndex["rain"]].oninput = function () {
+        noiseObject["rain"].setVolume(this.value / 100);
+    };
+    sliderSet[noiseIndex["thunder"]].oninput = function () {
+        noiseObject["thunder"].setVolume(this.value / 100);
+    };
+    sliderSet[noiseIndex["wave"]].oninput = function () {
+        noiseObject["wave"].setVolume(this.value / 100);
+    };
+    sliderSet[noiseIndex["rail"]].oninput = function () {
+        noiseObject["rail"].setVolume(this.value / 100);
+    };
+    sliderSet[noiseIndex["forest"]].oninput = function () {
+        noiseObject["forest"].setVolume(this.value / 100);
+    };
 
     
 </script>

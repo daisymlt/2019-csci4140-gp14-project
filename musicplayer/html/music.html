@@ -59,10 +59,25 @@
 </style>
 
 <div>
-    <h1 style="padding: 0.3em 1em;">Combined Player</h1>
+    <!-- <h1 style="padding: 0.3em 1em;">Combined Player</h1> -->
+
+    <div style="text-align:left;">
+            <input type="text" placeholder="Please select a file" id="actual-file" disabled="disabled"/>
+            <input type="button" value="Upload new music" id="select-file"/>
+        </div>
+        <br>
+        <!-- <p>Or paste YouTube link here: </p> 
+        <input type="text" placeholder="youtube.com" id="ytlink"/>
+        <input type="button" value="Download" id="ytdl" onclick="youtubedl(document.getElementById('ytlink').value);"/>
+        <p id="ytnull" style="color: red;"></p> -->
+    
+        <hr>
+        <h5>- Uploaded Songs - (sorted by alphabet)</h5>
+        <div id="music_list" style="width: 400px; height: 100px; overflow-y: scroll;"></div>
+    
 
     <div class="song" id="bkcolor">
-      <h1>Cosmic</h1>
+            <h2 id="songName">Please select a song</h2>
         <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
         <div>
 
@@ -144,18 +159,16 @@
         volumeWeight = 0.75;
     }
 
-    function preload() {
+    function preload(song_link) {
         reverb = new p5.Reverb();
         cVerb = new p5.Convolver("../IMreverbs/Narrow Bumpy Space.wav");
 
-        song = loadSound("../audio/music/cosmic.mp3", loaded);
+        song = loadSound(song_link, loaded);
         noise = loadSound("../audio/env/cafe(louder).mp3");
     }
 
     function loaded() {
         length = song.duration();
-        bpm = song.getBPM();
-        console.log(bpm);
     }
 
     function setup() {
@@ -192,6 +205,79 @@
         }
     }, 1000);
     // clearInterval(intrvl); // if it's needed
+
+    var app = require('electron').remote; 
+    var dialog = app.dialog;
+    var fs = require('fs');
+                
+    document.getElementById('select-file').addEventListener('click',function(){
+        dialog.showOpenDialog(function (fileNames) {
+            console.log(fileNames);
+            if(fileNames === undefined){
+                console.log("No file selected");
+            }else{
+                document.getElementById("actual-file").value = fileNames[0];
+                music_path = fileNames[0];
+                readFile(music_path);
+                // preload(music_path.value);
+                
+
+                var music_name = music_path.toString().substring(music_path.toString().lastIndexOf('/')+1);
+
+                fs.copyFile(music_path.toString(), 'audio/user_upload/'+music_name, (err) => {
+                    if (err) throw err;
+                    console.log('music was copied to destination');
+                });
+                app.getCurrentWindow().reload();
+            }
+        }); 
+    },false);
+
+    var music_path = document.getElementById('songName').innerHTML;
+
+    function readFile(filepath) {
+        fs.readFile(filepath, 'utf-8', function (err, data) {
+            if(err){
+                alert("An error ocurred reading the file :" + err.message);
+                return;
+            }
+        });
+    }
+
+    function playSong(song_id){
+        song.disconnect();
+        noise.pause();
+        icon.src = play;
+        progress.value = 0;
+        preload("../audio/user_upload/" + song_id);
+        document.getElementById('songName').innerHTML = song_id;  
+    }
+
+    var intrvl = setInterval( function(){
+        if (song.isPlaying()) {
+            progress.value = (song.currentTime() / length) * 100;
+        }
+    }, 1000);
+
+    const dirPath = 'audio/user_upload';
+    const music_list = fs.readdirSync(dirPath);
+
+    // for(var i=0; i < music_list.length; i++){
+    //     console.log(music_list[i]);
+    // }
+
+    var nHTML = '';
+
+    if(music_list.length == 1){
+        document.getElementById("music_list").innerHTML = "<p>File empty...</p>";
+    }
+    else{
+        music_list.forEach(function(item) {
+            if(item != ".DS_Store")
+                nHTML += '<li><p class="songName" id="' + item + '" onClick=playSong(this.id) style="padding:0; margin:0; line-height:12px;">' + item + '</a></li>';
+        });
+        document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
+    }
 
 </script>
 

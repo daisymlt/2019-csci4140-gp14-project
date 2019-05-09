@@ -51,17 +51,21 @@
 </style>
 
 <div>
-    <h1 style="padding: 0.3em 1em;">Song Player</h1>
+    <!-- <h1 style="padding: 0.3em 1em;">Song Player</h1> -->
 
-    <div style="text-align:center;">
+    <div style="text-align:left;">
         <input type="text" placeholder="Please select a file" id="actual-file" disabled="disabled"/>
         <input type="button" value="Upload new music" id="select-file"/>
     </div>
+    <br>
+    <!-- <p>Or paste YouTube link here: </p> 
+    <input type="text" placeholder="youtube.com" id="ytlink"/>
+    <input type="button" value="Download" id="ytdl" onclick="youtubedl(document.getElementById('ytlink').value);"/>
+    <p id="ytnull" style="color: red;"></p> -->
 
     <hr>
     <h5>- Uploaded Songs - (sorted by alphabet)</h5>
-    <div id="music_list" style="width: 400px; height: 100px; overflow-y: scroll;">
-    </div>
+    <div id="music_list" style="width: 400px; height: 100px; overflow-y: scroll;"></div>
 
     <hr>
 
@@ -196,6 +200,22 @@
         });
         document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
     }
+
+    // var ytlink;
+    // var ytcode = "test";
+    // function youtubedl(ytlink){
+    //     if(ytlink == ""){
+    //         document.getElementById("ytnull").innerHTML = "YouTube link should not be null.";
+    //     }
+    //     else{
+    //         document.getElementById("ytnull").innerHTML = "";
+    //         ytcode = ytlink.substring(ytlink.lastIndexOf('=')+1);
+    //         youtubedownload(ytcode);
+    //     }
+        
+    // }
+
+
 
 </script>
 

@@ -58,10 +58,10 @@
         <input type="button" value="Upload new music" id="select-file"/>
     </div>
     <br>
-    <p>Or paste YouTube link here: </p> 
+    <!-- <p>Or paste YouTube link here: </p> 
     <input type="text" placeholder="youtube.com" id="ytlink"/>
     <input type="button" value="Download" id="ytdl" onclick="youtubedl(document.getElementById('ytlink').value);"/>
-    <p id="ytnull" style="color: red;"></p>
+    <p id="ytnull" style="color: red;"></p> -->
 
     <hr>
     <h5>- Uploaded Songs - (sorted by alphabet)</h5>
@@ -201,48 +201,21 @@
         document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
     }
 
-    var ytlink;
-    var ytcode = "test";
-    function youtubedl(ytlink){
-        if(ytlink == ""){
-            document.getElementById("ytnull").innerHTML = "YouTube link should not be null.";
-        }
-        else{
-            document.getElementById("ytnull").innerHTML = "";
-            ytcode = ytlink.substring(ytlink.lastIndexOf('=')+1);
-            youtubedownload(ytcode);
-        }
+    // var ytlink;
+    // var ytcode = "test";
+    // function youtubedl(ytlink){
+    //     if(ytlink == ""){
+    //         document.getElementById("ytnull").innerHTML = "YouTube link should not be null.";
+    //     }
+    //     else{
+    //         document.getElementById("ytnull").innerHTML = "";
+    //         ytcode = ytlink.substring(ytlink.lastIndexOf('=')+1);
+    //         youtubedownload(ytcode);
+    //     }
         
-    }
+    // }
 
-    function youtubedownload(ytcode){
 
-        var YoutubeMp3Downloader = require("youtube-mp3-downloader");
-    
-        //Configure YoutubeMp3Downloader with your settings
-        var YD = new YoutubeMp3Downloader({
-            "ffmpegPath": "/",        // Where is the FFmpeg binary located?
-            "outputPath": "audio/user_upload",    // Where should the downloaded and encoded files be stored?
-            "youtubeVideoQuality": "highest",       // What video quality should be used?
-            "queueParallelism": 1,                  // How many parallel downloads/encodes should be started?
-            "progressTimeout": 5000                 // How long should be the interval of the progress reports
-        });
-        
-        //Download video and save as MP3 file
-        YD.download(ytcode);
-        
-        YD.on("finished", function(err, data) {
-            console.log(JSON.stringify(data));
-        });
-        
-        YD.on("error", function(error) {
-            console.log(error);
-        });
-
-        YD.on("progress", function(progress) {
-            console.log(JSON.stringify(progress));
-        });
-    }
 
 </script>
 

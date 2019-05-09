@@ -10,7 +10,7 @@
     width: 400px;
 }
 
-.song h1 {
+.song h2 {
     padding: 0.5em 0.8em;
     text-align: center;
 }
@@ -31,7 +31,7 @@
     transition: background .2s;
 }
 .myslider:hover {
-    background: #4abbfc;
+    background: #82d3fc;
 }
 
 .myslider::-webkit-slider-thumb {
@@ -56,6 +56,9 @@
     opacity: 1;
 }
 
+.songName:hover{
+    text-decoration: underline;
+}
 </style>
 
 <div>
@@ -76,7 +79,7 @@
         <div id="music_list" style="width: 400px; height: 100px; overflow-y: scroll;"></div>
     
 
-    <div class="song" id="bkcolor">
+    <div class="song">
             <h2 id="songName">Please select a song</h2>
         <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
         <div>
@@ -108,12 +111,10 @@
 
 <script>
     const { ipcRenderer } = require('electron');
-    var song, noise, reverb, cVerb, length, bpm;
-
+    var song, noise, reverb, cVerb, length;
     var volume = document.getElementById("volume");
     var icon = document.getElementById("img");
     var progress = document.getElementById("progress");
-    var bkcolor = document.getElementById("bkcolor");
     //linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)
     var play = "../image/player/play.png";
     var pause = "../image/player/pause.png";
@@ -123,8 +124,13 @@
     noisePath["campfire"] = "../audio/env/campfire.mp3";
     noisePath["library"] = "../audio/env/library.mp3";
 
+    /*
+
+        ATMOSPHERE STIMULATOR SECTION
+
+     */
+
     function loadCafe() {
-        bkcolor.background = "#B1806A";
         song.disconnect();
         reverb.process(song, 7, 48);
 
@@ -174,7 +180,8 @@
     function setup() {
         // x second reverbTime, decayRate of x%
         song.disconnect();
-        // Default: CAFE
+
+        // DEFAULT MODE: CAFE
         reverb.process(song, 7, 48);
     }
 
@@ -196,31 +203,36 @@
     };
 
     progress.oninput = function () {
-        song.playMode('restart');
+
     };
 
     var intrvl = setInterval( function(){
         if (song.isPlaying()) {
             progress.value = (song.currentTime() / length) * 100;
         }
-    }, 1000);
-    // clearInterval(intrvl); // if it's needed
+    }, 1000);  // clearInterval(intrvl); // if it's needed
+
+    /*
+
+        FILE SECTION
+
+     */
 
     var app = require('electron').remote; 
     var dialog = app.dialog;
     var fs = require('fs');
-                
+    var music_path = document.getElementById('songName').innerHTML;
+
     document.getElementById('select-file').addEventListener('click',function(){
         dialog.showOpenDialog(function (fileNames) {
             console.log(fileNames);
             if(fileNames === undefined){
                 console.log("No file selected");
-            }else{
+            } else {
                 document.getElementById("actual-file").value = fileNames[0];
                 music_path = fileNames[0];
                 readFile(music_path);
                 // preload(music_path.value);
-                
 
                 var music_name = music_path.toString().substring(music_path.toString().lastIndexOf('/')+1);
 
@@ -233,15 +245,34 @@
         }); 
     },false);
 
-    var music_path = document.getElementById('songName').innerHTML;
 
     function readFile(filepath) {
         fs.readFile(filepath, 'utf-8', function (err, data) {
             if(err){
                 alert("An error ocurred reading the file :" + err.message);
-                return;
             }
         });
+    }
+
+    /*
+
+        SONG LIST SECTION
+
+     */
+
+    const dirPath = 'audio/user_upload';
+    const music_list = fs.readdirSync(dirPath);
+    var nHTML = '';
+
+    if(music_list.length === 1){
+        document.getElementById("music_list").innerHTML = "<p>File empty...</p>";
+    }
+    else{
+        music_list.forEach(function(item) {
+            if(item !== ".DS_Store")
+                nHTML += '<li><p class="songName" id="' + item + '" onClick=playSong(this.id) style="padding:0; margin:0; line-height:12px;">' + item + '</a></li>';
+        });
+        document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
     }
 
     function playSong(song_id){
@@ -249,34 +280,9 @@
         noise.pause();
         icon.src = play;
         progress.value = 0;
+
         preload("../audio/user_upload/" + song_id);
-        document.getElementById('songName').innerHTML = song_id;  
-    }
-
-    var intrvl = setInterval( function(){
-        if (song.isPlaying()) {
-            progress.value = (song.currentTime() / length) * 100;
-        }
-    }, 1000);
-
-    const dirPath = 'audio/user_upload';
-    const music_list = fs.readdirSync(dirPath);
-
-    // for(var i=0; i < music_list.length; i++){
-    //     console.log(music_list[i]);
-    // }
-
-    var nHTML = '';
-
-    if(music_list.length == 1){
-        document.getElementById("music_list").innerHTML = "<p>File empty...</p>";
-    }
-    else{
-        music_list.forEach(function(item) {
-            if(item != ".DS_Store")
-                nHTML += '<li><p class="songName" id="' + item + '" onClick=playSong(this.id) style="padding:0; margin:0; line-height:12px;">' + item + '</a></li>';
-        });
-        document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
+        document.getElementById('songName').innerHTML = song_id;
     }
 
 </script>

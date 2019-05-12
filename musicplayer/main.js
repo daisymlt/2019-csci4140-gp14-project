@@ -16,7 +16,7 @@ function createWindow () {
   //win.webContents.openDevTools()
 
   //這邊的console.log是在terminal
-  console.log('testing')
+  // console.log('testing')
 
   win.webContents.on('dom-ready', () => {
   // 視窗關閉時會觸發。

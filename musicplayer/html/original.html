@@ -61,6 +61,7 @@
     <input type="text" placeholder="youtube.com" id="ytlink"/>
     <input type="button" value="Download" id="ytdl" onclick="youtubedl(document.getElementById('ytlink').value);"/>
     <p id="ytnull" style="color: red;"></p>
+    <p id="ytloading" style="color: rgb(28, 28, 94);"></p>
 
     <hr>
     <h5>- Uploaded Songs - (sorted by alphabet)</h5>
@@ -69,7 +70,7 @@
     <hr>
 
     <div class="song">
-      <h2 id="songName">Please select a song</h2>
+      <h4 id="songName">Please select a song</h4>
         <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
         <div>
           <button class="button" onclick="togglePlaying();">
@@ -77,12 +78,17 @@
           </button>
           <img src="../image/player/volume.png" style="height: 25px; width: auto; margin-right: 10px">
           <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
-          <input type="button" value="Delete music" id="delete-file"/>
       </div>
     </div>
 </div>
 
 <script>
+    /*
+
+        SONG PLAYER
+
+    */
+    
     const { webContents } = require('electron');
     const { ipcRenderer } = require('electron');
     var song, noise, reverb, cVerb;
@@ -128,6 +134,12 @@
         }
     }, 1000);    
 
+    /*
+
+        FILE HANDLING (UPLOAD, DELETE)
+
+    */
+
     var app = require('electron').remote; 
     var dialog = app.dialog;
     var fs = require('fs');
@@ -155,27 +167,6 @@
         }); 
     },false);
 
-    document.getElementById('delete-file').addEventListener('click',function(){
-        var filepath = "audio/user_upload/" + document.getElementById('songName').textContent;
-
-        console.log(filepath);
-
-        if (fs.existsSync(filepath)) {
-            fs.unlink(filepath, (err) => {
-                if (err) {
-                    alert("An error ocurred updating the file" + err.message);
-                    console.log(err);
-                    return;
-                }
-                console.log("File succesfully deleted");
-                app.getCurrentWindow().reload();
-            });
-        } else {
-            alert("This file doesn't exist, cannot delete");
-        }
-
-    },false);
-
     var music_path = document.getElementById('songName').innerHTML;
 
     function readFile(filepath) {
@@ -201,6 +192,12 @@
         }
     }, 1000);
 
+    /*
+
+        DISPLAY SONG LIST
+
+    */
+
     const dirPath = 'audio/user_upload';
     const music_list = fs.readdirSync(dirPath);
 
@@ -220,6 +217,11 @@
         });
         document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
     }
+
+    /*
+        YOUTUBE UPLOAD
+
+    */
 
     function youtubedownload(ytcode){
         var Downloader = require("../js/downloader");
@@ -243,9 +245,11 @@
     function youtubedl(ytlink){
         if(ytlink == ""){
             document.getElementById("ytnull").innerHTML = "YouTube link should not be null.";
+            document.getElementById("ytloading").innerHTML = "";
         }
         else{
             document.getElementById("ytnull").innerHTML = "";
+            document.getElementById("ytloading").innerHTML = "Downloading... Page will refresh once the song is successfully downloaded.";
             ytcode = ytlink.substring(ytlink.lastIndexOf('=')+1);
             youtubedownload(ytcode);
         }

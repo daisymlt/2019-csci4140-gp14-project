@@ -1,5 +1,21 @@
 <script type="text/javascript" src="../js/sidebar.js"></script>
 
+<style>
+.noise img {
+    height: 50px;
+    width: auto;
+    margin: 1.5em 1.5em 1em 1.5em;
+    opacity: 0.4;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.noise img:hover {
+    opacity: 1;
+}
+
+</style>
+
 
 <div>
 <h4>Manage Song List</h4>
@@ -11,6 +27,20 @@
 <hr>
 
 <h5>set default atmosphere</h5>
+<div class = "noise">
+        <button class="button" onclick="loadCafe();">
+            <img src="../image/cafe.png">
+        </button>
+        <img src="../image/campfire.png" onclick="">
+        <button class="button" onclick="loadRain();">
+            <img src="../image/rain.png">
+        </button>
+        <img src="../image/library.png" onclick="">
+        <img src="../image/wine.png">
+        <button class="button" onclick="loadConcert();">
+            <img src="../image/concert.png">
+        </button>
+    </div>
 
 </div>
 

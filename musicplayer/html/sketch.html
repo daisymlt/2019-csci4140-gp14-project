@@ -1,3 +1,183 @@
-<script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
 
+    <script language="JavaScript" type="text/javascript" src="../node_modules/p5/lib/p5.js"></script>
+    <script type="text/javascript" src="../node_modules/p5/lib/addons/p5.sound.js"></script>
+
+    <style>
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .panel {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .panel img {
+            height: 70px;
+            width: auto;
+            margin: 1.5em 1.5em 1em 1.5em;
+            opacity: 0.3;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .panel img:hover {
+            opacity: 1;
+        }
+
+        .button {
+            background-color: transparent;
+            border: none;
+            display: inline;
+        }
+
+        .button:visited {
+            border: none;
+        }
+
+        .myslider {
+            -webkit-appearance: none;
+            width: 45%;
+            height: 6px;
+            border-radius: 4px;
+            background: #eeeeee;
+            display: inline;
+            -webkit-transition: .2s;
+            transition: background .2s;
+        }
+        .myslider:hover {
+            background: #82d3fc;
+        }
+
+        .myslider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 7px;
+            background: #454545;
+            box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+<body>
+<h1 style="padding: 0.3em 1em;">White Noise Player</h1>
+
+<div class="panel">
+    <div>
+        <button class="button" onclick='clickPlay("ocean");'>
+            <img src="../image/ocean.png">
+        </button>
+        <input type="range" class="myslider" min="0" max="100" value="50">
+    </div>
+    <div>
+        <button class="button" onclick='clickPlay("rain");'>
+            <img src="../image/rain.png">
+        </button>
+        <input type="range" class="myslider" min="0" max="100" value="50">
+    </div>
+    <div>
+        <button class="button" onclick='clickPlay("thunder");'>
+            <img src="../image/thunder.png">
+        </button>
+        <input type="range" class="myslider" min="0" max="100" value="50">
+    </div>
+    <div>
+        <button class="button" onclick='clickPlay("wave");'>
+            <img src="../image/noise.png">
+        </button>
+        <input type="range" class="myslider" min="0" max="100" value="50">
+    </div>
+    <div>
+        <button class="button" onclick='clickPlay("rail");'>
+            <img src="../image/rail.png">
+        </button>
+        <input type="range" class="myslider" min="0" max="100" value="50">
+    </div>
+    <div>
+        <button class="button" onclick='clickPlay("forest");'>
+            <img src="../image/forest.png">
+        </button>
+        <input type="range" class="myslider" min="0" max="100" value="50">
+    </div>
+</div>
+
+<button>
+    <a href="home.html">Back to Normal World</a>
+</button>
+
+<script>
+    var amp;
+    var noisePath = [], noiseObject = [], noiseIndex = [];
+    var sliderSet = document.getElementsByClassName("myslider");
+    var imgSet = document.getElementsByClassName("panel")[0].getElementsByTagName("img");
+
+    noisePath["ocean"] = "../audio/white_noise/ocean.mp3";
+    noisePath["rain"] = "../audio/white_noise/rain.mp3";
+    noisePath["thunder"] = "../audio/white_noise/thunder.mp3";
+    noisePath["wave"] = "../audio/white_noise/pure-white-noise.mp3";
+    noisePath["rail"] = "../audio/white_noise/train.mp3";
+    noisePath["forest"] = "../audio/white_noise/leaf.mp3";
+
+    noiseIndex["ocean"] = 0;
+    noiseIndex["rain"] = 1;
+    noiseIndex["thunder"] = 2;
+    noiseIndex["wave"] = 3;
+    noiseIndex["rail"] = 4;
+    noiseIndex["forest"] = 5;
+
+    function setup() {
+        for (var key in noisePath) {
+            noiseObject[key] = loadSound(noisePath[key]);
+            noiseObject[key].setVolume(0.5);
+        }
+        createCanvas(200, 200);
+        amp = new p5.Amplitude();
+    }
+
+    function clickPlay(key) {
+        if (!noiseObject[key].isPlaying()) {
+            noiseObject[key].play();
+            imgSet[noiseIndex[key]].style.opacity = "1";
+        } else {
+            noiseObject[key].pause();
+            imgSet[noiseIndex[key]].style.opacity = "0.3";
+        }
+    }
+
+    sliderSet[noiseIndex["ocean"]].oninput = function () {
+        noiseObject["ocean"].setVolume(this.value / 100);
+    };
+    sliderSet[noiseIndex["rain"]].oninput = function () {
+        noiseObject["rain"].setVolume(this.value / 100);
+    };
+    sliderSet[noiseIndex["thunder"]].oninput = function () {
+        noiseObject["thunder"].setVolume(this.value / 100);
+    };
+    sliderSet[noiseIndex["wave"]].oninput = function () {
+        noiseObject["wave"].setVolume(this.value / 100);
+    };
+    sliderSet[noiseIndex["rail"]].oninput = function () {
+        noiseObject["rail"].setVolume(this.value / 100);
+    };
+    sliderSet[noiseIndex["forest"]].oninput = function () {
+        noiseObject["forest"].setVolume(this.value / 100);
+    };
+
+    function draw() {
+        background(51);
+
+        var vol = amp.getLevel();
+        var diam = map(vol, 0, 0.3, 10, 200);
+
+        fill(255, 0, 255);
+        ellipse(height / 2, width / 2, diam, diam);
+    }
 </script>
+</body>
+</html>

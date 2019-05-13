@@ -1,7 +1,10 @@
-# 2019-csci4140-gp14-project
+# Harmonious
+The Chinese University of Hong Kong 2019 Semester 2
+CSCI4140 Group 14 Project
 
-how to start the app:
+An Atmosphere-music mixer
 
+## Getting Started
 ```
 cd musicplayer
 ```
@@ -11,6 +14,3 @@ npm install
 ```
 npm start
 ```
-
-can simutaneously play 2 songs now lol
-click 'Player' in sidebar to try try XD

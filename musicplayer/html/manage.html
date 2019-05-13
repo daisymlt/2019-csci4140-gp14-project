@@ -1,0 +1,95 @@
+<script type="text/javascript" src="../js/sidebar.js"></script>
+
+<style>
+.noise img {
+    height: 50px;
+    width: auto;
+    margin: 1.5em 1.5em 1em 1.5em;
+    opacity: 0.4;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.noise img:hover {
+    opacity: 1;
+}
+
+</style>
+
+
+<div>
+<h4>Manage Song List</h4>
+
+<hr>
+
+<div id="music_list" style="margin: 1em; width: 400px; height: 200px; overflow-y: scroll;"></div>
+
+<hr>
+
+<h5>set default atmosphere</h5>
+<div class = "noise">
+        <button class="button" onclick="loadCafe();">
+            <img src="../image/cafe.png">
+        </button>
+        <img src="../image/campfire.png" onclick="">
+        <button class="button" onclick="loadRain();">
+            <img src="../image/rain.png">
+        </button>
+        <img src="../image/library.png" onclick="">
+        <img src="../image/wine.png">
+        <button class="button" onclick="loadConcert();">
+            <img src="../image/concert.png">
+        </button>
+    </div>
+
+</div>
+
+<script>
+    var app = require('electron').remote; 
+    var dialog = app.dialog;
+    var fs = require('fs');
+
+    const dirPath = 'audio/user_upload';
+    const music_list = fs.readdirSync(dirPath);
+
+    // for(var i=0; i < music_list.length; i++){
+    //     console.log(music_list[i]);
+    // }
+
+    var nHTML = '';
+
+    if(music_list.length == 1){
+        document.getElementById("music_list").innerHTML = "<p>File empty...</p>";
+    }
+    else{
+        music_list.forEach(function(item) {
+            if(item != ".DS_Store")
+                nHTML += '<li><p class="songName" id="' + item + '" style="padding:0; margin:0; line-height:36px;">' + item + '</a>&nbsp&nbsp&nbsp<button id="' + item + '" onClick=deleteSong(this.id)>Delete</button></li>';
+        });
+        document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
+    }
+
+    function deleteSong(song_id){
+        var filepath = "audio/user_upload/" + song_id;
+        var name = song_id;
+
+        console.log(filepath);
+
+        if (fs.existsSync(filepath)) {
+            fs.unlink(filepath, (err) => {
+                if (err) {
+                    alert("An error ocurred updating the file" + err.message);
+                    console.log(err);
+                    return;
+                }
+                console.log("File succesfully deleted");
+                app.getCurrentWindow().reload();
+            });
+        } else {
+            alert("This file doesn't exist, cannot delete");
+        }
+    }
+
+</script>
+
+<script type="text/javascript" src="../js/sidebar2.js"></script>

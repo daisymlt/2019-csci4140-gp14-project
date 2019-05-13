@@ -7,7 +7,7 @@
 .song {
     background: white;
     border-radius: 13px;
-    width: 400px;
+    width: 500px;
 }
 
 .song h2 {
@@ -63,6 +63,22 @@
 
 <div>
     <!-- <h1 style="padding: 0.3em 1em;">Combined Player</h1> -->
+
+    <!--
+    <div style="text-align:left;">
+            <input type="text" placeholder="Please select a file" id="actual-file" disabled="disabled"/>
+            <input type="button" value="Upload new music" id="select-file"/>
+        </div>
+        <br>
+        <p>Or paste YouTube link here: </p>
+        <input type="text" placeholder="youtube.com" id="ytlink"/>
+        <input type="button" value="Download" id="ytdl" onclick="youtubedl(document.getElementById('ytlink').value);"/>
+        <p id="ytnull" style="color: red;"></p>
+        <p id="ytloading" style="color: rgb(28, 28, 94);"></p>
+
+        <hr>
+        -->
+
     <h5>- Uploaded Songs - (sorted by alphabet)</h5>
     <div id="music_list" style="margin: 1em; width: 400px; height: 100px; overflow-y: scroll;"></div>
 
@@ -202,13 +218,10 @@
 
         ATMOSPHERE STIMULATOR SECTION
 
-
     function loadLibrary() {
         /*
 
         NOT YET TUNED
-
-
 
     wnoise.disconnect();
     wnoise = loadSound("../audio/env/library.mp3", loadNoise);
@@ -278,7 +291,7 @@
 
     /*
 
-        SONG LIST SECTION
+        DISPLAY SONG LIST SECTION
 
      */
 
@@ -299,6 +312,48 @@
         });
         document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
     }
+
+
+    /*
+
+        YOUTUBE UPLOAD
+
+    */
+
+    /*
+    function youtubedownload(ytcode){
+        var Downloader = require("../js/downloader");
+        var dl = new Downloader();
+        var i = 0;
+
+        dl.getMP3({videoId: ytcode}, function(err,res){
+            i++;
+            if(err)
+                throw err;
+            else{
+                console.log("Song "+ i + " was downloaded: " + res.file);
+            }
+            app.getCurrentWindow().reload();
+        });
+        
+    }
+
+    var ytlink;
+    var ytcode = "test";
+    function youtubedl(ytlink){
+        if(ytlink === ""){
+            document.getElementById("ytnull").innerHTML = "YouTube link should not be null.";
+            document.getElementById("ytloading").innerHTML = "";
+        }
+        else{
+            document.getElementById("ytnull").innerHTML = "";
+            document.getElementById("ytloading").innerHTML = "Downloading... Page will refresh once the song is successfully downloaded.";
+            ytcode = ytlink.substring(ytlink.lastIndexOf('=')+1);
+            youtubedownload(ytcode);
+        }
+        
+    }
+    */
 
 </script>
 

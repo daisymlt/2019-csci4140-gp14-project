@@ -22,6 +22,19 @@
 
 <hr>
 
+<div style="text-align:left;">
+    <!-- <input type="text" placeholder="Please select a file" id="actual-file" disabled="disabled"/> -->
+    <input type="button" value="Upload new music" id="select-file"/>
+</div>
+<br>
+<p>Or paste YouTube link here: </p> 
+<input type="text" placeholder="youtube.com" id="ytlink"/>
+<input type="button" value="Download" id="ytdl" onclick="youtubedl(document.getElementById('ytlink').value);"/>
+<p id="ytnull" style="color: red;"></p>
+<p id="ytloading" style="color: rgb(28, 28, 94);"></p>
+
+<hr>
+
 <div id="music_list" style="margin: 1em; width: 400px; height: 200px; overflow-y: scroll;"></div>
 
 <hr>
@@ -45,9 +58,47 @@
 </div>
 
 <script>
+    /*
+
+        FILE HANDLING (UPLOAD, DELETE)
+
+    */
+
     var app = require('electron').remote; 
     var dialog = app.dialog;
     var fs = require('fs');
+
+    document.getElementById('select-file').addEventListener('click',function(){
+        dialog.showOpenDialog(function (fileNames) {
+            console.log(fileNames);
+            if(fileNames === undefined){
+                console.log("No file selected");
+            }else{
+                // document.getElementById("actual-file").value = fileNames[0];
+                music_path = fileNames[0];
+                readFile(music_path);
+                // preload(music_path.value);
+                
+
+                var music_name = music_path.toString().substring(music_path.toString().lastIndexOf('/')+1);
+
+                fs.copyFile(music_path.toString(), 'audio/user_upload/'+music_name, (err) => {
+                    if (err) throw err;
+                    console.log('music was copied to destination');
+                });
+                app.getCurrentWindow().reload();
+            }
+        }); 
+    },false);
+
+    function readFile(filepath) {
+        fs.readFile(filepath, 'utf-8', function (err, data) {
+            if(err){
+                alert("An error ocurred reading the file :" + err.message);
+                return;
+            }
+        });
+    }
 
     const dirPath = 'audio/user_upload';
     const music_list = fs.readdirSync(dirPath);
@@ -89,6 +140,45 @@
             alert("This file doesn't exist, cannot delete");
         }
     }
+
+    /*
+        YOUTUBE UPLOAD
+
+    */
+
+    function youtubedownload(ytcode){
+        var Downloader = require("../js/downloader");
+        var dl = new Downloader();
+        var i = 0;
+
+        dl.getMP3({videoId: ytcode}, function(err,res){
+            i++;
+            if(err)
+                throw err;
+            else{
+                console.log("Song "+ i + " was downloaded: " + res.file);
+            }
+            app.getCurrentWindow().reload();
+        });
+        
+    }
+
+    var ytlink;
+    var ytcode = "test";
+    function youtubedl(ytlink){
+        if(ytlink == ""){
+            document.getElementById("ytnull").innerHTML = "YouTube link should not be null.";
+            document.getElementById("ytloading").innerHTML = "";
+        }
+        else{
+            document.getElementById("ytnull").innerHTML = "";
+            document.getElementById("ytloading").innerHTML = "Downloading... Page will refresh once the song is successfully downloaded.";
+            ytcode = ytlink.substring(ytlink.lastIndexOf('=')+1);
+            youtubedownload(ytcode);
+        }
+        
+    }
+
 
 </script>
 

@@ -23,7 +23,6 @@
 <hr>
 
 <div style="text-align:left;">
-    <!-- <input type="text" placeholder="Please select a file" id="actual-file" disabled="disabled"/> -->
     <input type="button" value="Upload new music" id="select-file"/>
 </div>
 <br>
@@ -74,10 +73,8 @@
             if(fileNames === undefined){
                 console.log("No file selected");
             }else{
-                // document.getElementById("actual-file").value = fileNames[0];
                 music_path = fileNames[0];
                 readFile(music_path);
-                // preload(music_path.value);
                 
 
                 var music_name = music_path.toString().substring(music_path.toString().lastIndexOf('/')+1);
@@ -102,10 +99,6 @@
 
     const dirPath = 'audio/user_upload';
     const music_list = fs.readdirSync(dirPath);
-
-    // for(var i=0; i < music_list.length; i++){
-    //     console.log(music_list[i]);
-    // }
 
     var nHTML = '';
 

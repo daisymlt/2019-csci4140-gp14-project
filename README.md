@@ -6,11 +6,7 @@ An Atmosphere-music mixer
 
 ## Getting Started
 ```
-cd musicplayer
-```
-```
-npm install
-```
-```
-npm start
+$ cd musicplayer
+$ npm install
+$ npm start
 ```

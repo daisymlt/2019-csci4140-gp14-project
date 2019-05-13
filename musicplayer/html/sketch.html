@@ -131,12 +131,26 @@
     noiseIndex["rail"] = 4;
     noiseIndex["forest"] = 5;
 
+    var c = document.createElement('canvas'),
+        ctx = c.getContext('2d'),
+        cw = c.width = 200,
+        ch = c.height = 200;
+
+    for( var x = 0; x < cw; x++ ){
+        for( var y = 0; y < ch; y++ ){
+            ctx.fillStyle = 'hsl(0, 0%, ' + ( 100 - ( Math.random() * 15 ) ) + '%)';
+            ctx.fillRect(x, y, 1, 1);
+        }
+    }
+    document.body.style.background = 'url(' + c.toDataURL() + ')';
+
     function setup() {
         for (var key in noisePath) {
             noiseObject[key] = loadSound(noisePath[key]);
             noiseObject[key].setVolume(0.5);
         }
         createCanvas(200, 200);
+        // music visualizer
         amp = new p5.Amplitude();
     }
 
@@ -171,6 +185,7 @@
 
     function draw() {
         background(51);
+        //linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)
 
         var vol = amp.getLevel();
         var diam = map(vol, 0, 0.3, 10, 200);

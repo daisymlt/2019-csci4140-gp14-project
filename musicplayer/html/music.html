@@ -63,20 +63,8 @@
 
 <div>
     <!-- <h1 style="padding: 0.3em 1em;">Combined Player</h1> -->
-
-    <div style="text-align:left;">
-            <input type="text" placeholder="Please select a file" id="actual-file" disabled="disabled"/>
-            <input type="button" value="Upload new music" id="select-file"/>
-        </div>
-        <br>
-        <!-- <p>Or paste YouTube link here: </p> 
-        <input type="text" placeholder="youtube.com" id="ytlink"/>
-        <input type="button" value="Download" id="ytdl" onclick="youtubedl(document.getElementById('ytlink').value);"/>
-        <p id="ytnull" style="color: red;"></p> -->
-    
-        <hr>
-        <h5>- Uploaded Songs - (sorted by alphabet)</h5>
-        <div id="music_list" style="margin: 1em; width: 400px; height: 100px; overflow-y: scroll;"></div>
+    <h5>- Uploaded Songs - (sorted by alphabet)</h5>
+    <div id="music_list" style="margin: 1em; width: 400px; height: 100px; overflow-y: scroll;"></div>
 
     <hr>
 
@@ -97,11 +85,13 @@
         <button class="button" onclick="loadCafe();">
             <img src="../image/cafe.png">
         </button>
-        <img src="../image/campfire.png" onclick="">
+        <img src="../image/campfire.png">
         <button class="button" onclick="loadRain();">
             <img src="../image/rain.png">
         </button>
-        <img src="../image/library.png" onclick="">
+        <button class="button">
+            <img src="../image/library.png">
+        </button>
         <img src="../image/wine.png">
         <button class="button" onclick="loadConcert();">
             <img src="../image/concert.png">
@@ -112,147 +102,178 @@
 
 <script>
     const { ipcRenderer } = require('electron');
-    var song, noise, reverb, cVerb, length;
+    var reverb, cVerb, length;
+    var curSongKey = '', curNoiseKey = 'cafe';
     var volume = document.getElementById("volume");
     var icon = document.getElementById("img");
     var progress = document.getElementById("progress");
-    //linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)
+    var imgSet = document.getElementsByClassName("noise")[0].getElementsByTagName("img");
+
     var play = "../image/player/play.png";
     var pause = "../image/player/pause.png";
     var volumeWeight = 1;
 
-    var noisePath = [];
+    var songObject = [], noiseObject = [], noisePath = [], noiseIndex = [];
+    noisePath["cafe"] = "../audio/env/cafe(louder).mp3";
     noisePath["campfire"] = "../audio/env/campfire.mp3";
+    noisePath["rain"] = "../audio/white_noise/rain.mp3";
     noisePath["library"] = "../audio/env/library.mp3";
+    noisePath["bar"] = "../audio/white_noise/train.mp3";
+    noisePath["concert"] = "../audio/env/concert.mp3";
+
+    noiseIndex["cafe"] = 0;
+    noiseIndex["campfire"] = 1;
+    noiseIndex["rain"] = 2;
+    noiseIndex["library"] = 3;
+    noiseIndex["bar"] = 4;
+    noiseIndex["concert"] = 5;
+
+    /*
+
+        LOADING AND ADJUSTMENT SECTION
+
+     */
+
+    function setup() {
+        for (var key in noisePath) {
+            noiseObject[key] = loadSound(noisePath[key]);
+        }
+        reverb = new p5.Reverb();
+        cVerb = new p5.Convolver("../IMreverbs/Narrow Bumpy Space.wav");
+    }
+
+    function playSong(songID){
+        if (songObject[curSongKey] !== undefined) {
+            songObject[curSongKey].stop();
+        }
+
+        // CHANGE THE CURRENT PLAYING SONG KEY
+        curSongKey = songID;
+        songObject[curSongKey] = loadSound("../audio/user_upload/" + songID, loaded);
+        songObject[curSongKey].playMode('restart');
+
+        loadCafe();
+
+        noiseObject[curNoiseKey].pause();
+        icon.src = play;
+        progress.value = 0;
+        document.getElementById('songName').innerHTML = songID;
+    }
+
+    function loaded() {
+        length = songObject[curSongKey].duration();
+        progress.max = length;
+    }
+
+    function togglePlaying() {
+        if (songObject[curSongKey] !== undefined) {
+            if (songObject[curSongKey].isPlaying() || noiseObject[curNoiseKey].isPlaying()) {
+                songObject[curSongKey].pause();
+                icon.src = play;
+                noiseObject[curNoiseKey].pause();
+            } else {
+                songObject[curSongKey].play();
+                icon.src = pause;
+                noiseObject[curNoiseKey].play();
+            }
+        }
+    }
+
+    volume.oninput = function () {
+        songObject[curSongKey].setVolume(this.value / 100);
+        noiseObject[curNoiseKey].setVolume((this.value / 100) * volumeWeight);
+    };
+
+    progress.oninput = function () {
+        songObject[curSongKey].stop();
+        songObject[curSongKey].play(2, 1, 1, 200, length - 200);
+        console.log(this.value);
+        console.log(length - this.value);
+    };
+
+    var intrvl = setInterval( function(){
+        if (songObject[curSongKey].isPlaying()) {
+            progress.value = songObject[curSongKey].currentTime();
+            console.log(songObject[curSongKey].currentTime());
+        }
+    }, 2000);  // clearInterval(intrvl); // if it's needed
 
     /*
 
         ATMOSPHERE STIMULATOR SECTION
 
-     */
+
+    function loadLibrary() {
+        /*
+
+        NOT YET TUNED
+
+
+
+    wnoise.disconnect();
+    wnoise = loadSound("../audio/env/library.mp3", loadNoise);
+    wnoise.setVolume(0.5);
+    volumeWeight = 0.5;
+    }
+
+
+    */
 
     function loadCafe() {
-        song.disconnect();
-        reverb.process(song, 7, 48);
+        songObject[curSongKey].disconnect();
+        reverb.process(songObject[curSongKey], 7, 48);
 
-        noise.disconnect();
-        noise = loadSound("../audio/env/cafe(louder).mp3", function () {
-            if (song.isPlaying()) {noise.play();}
-        });
+        imgSet[noiseIndex[curNoiseKey]].style.opacity = "0.3";
+        if (noiseObject[curNoiseKey].isPlaying()) {
+            // curNoiseKey: ORIGINAL KEY
+            noiseObject[curNoiseKey].stop();
+            curNoiseKey = "cafe";
+            noiseObject[curNoiseKey].play();
+        } else {
+            noiseObject[curNoiseKey].stop();
+            curNoiseKey = "cafe";
+        }
+        imgSet[noiseIndex[curNoiseKey]].style.opacity = "1";
+
         volumeWeight = 1;
     }
 
     function loadRain() {
-        song.disconnect();
-        reverb.process(song, 3, 40);
+        songObject[curSongKey].disconnect();
+        reverb.process(songObject[curSongKey], 3, 40);
 
-        noise.disconnect();
-        noise = loadSound("../audio/white_noise/rain.mp3", function () {
-            if (song.isPlaying()) {noise.play();}
-        });
-        noise.setVolume(0.5);
+        imgSet[noiseIndex[curNoiseKey]].style.opacity = "0.3";
+        if (noiseObject[curNoiseKey].isPlaying()) {
+            noiseObject[curNoiseKey].stop();
+            curNoiseKey = "rain";
+            noiseObject[curNoiseKey].play();
+        } else {
+            noiseObject[curNoiseKey].stop();
+            curNoiseKey = "rain";
+        }
+        imgSet[noiseIndex[curNoiseKey]].style.opacity = "1";
+
+        noiseObject[curNoiseKey].setVolume(0.5);
         volumeWeight = 0.5;
     }
 
     function loadConcert() {
-        song.disconnect();
-        cVerb.process(song);
+        songObject[curSongKey].disconnect();
+        cVerb.process(songObject[curSongKey]);
 
-        noise.disconnect();
-        noise = loadSound("../audio/env/concert.mp3", function () {
-            if (song.isPlaying()) {noise.play();}
-        });
-        noise.setVolume(0.75);
-        volumeWeight = 0.75;
-    }
-
-    function preload(song_link) {
-        reverb = new p5.Reverb();
-        cVerb = new p5.Convolver("../IMreverbs/Narrow Bumpy Space.wav");
-
-        song = loadSound(song_link, loaded);
-        noise = loadSound("../audio/env/cafe(louder).mp3");
-    }
-
-    function loaded() {
-        length = song.duration();
-    }
-
-    function setup() {
-        // x second reverbTime, decayRate of x%
-        song.disconnect();
-
-        // DEFAULT MODE: CAFE
-        reverb.process(song, 7, 48);
-    }
-
-    function togglePlaying() {
-        if (!song.isPlaying()) {
-            song.play();
-            icon.src = pause;
-            noise.play();
+        imgSet[noiseIndex[curNoiseKey]].style.opacity = "0.3";
+        if (noiseObject[curNoiseKey].isPlaying()) {
+            noiseObject[curNoiseKey].stop();
+            curNoiseKey = "concert";
+            noiseObject[curNoiseKey].play();
         } else {
-            song.pause();
-            icon.src = play;
-            noise.pause();
+            noiseObject[curNoiseKey].stop();
+            curNoiseKey = "concert";
         }
-    }
+        imgSet[noiseIndex[curNoiseKey]].style.opacity = "1";
 
-    volume.oninput = function () {
-        song.setVolume(this.value / 100);
-        noise.setVolume((this.value / 100) * volumeWeight);
-    };
-
-    progress.oninput = function () {
-
-    };
-
-    var intrvl = setInterval( function(){
-        if (song.isPlaying()) {
-            progress.value = (song.currentTime() / length) * 100;
-        }
-    }, 1000);  // clearInterval(intrvl); // if it's needed
-
-    /*
-
-        FILE SECTION
-
-     */
-
-    var app = require('electron').remote; 
-    var dialog = app.dialog;
-    var fs = require('fs');
-    var music_path = document.getElementById('songName').innerHTML;
-
-    document.getElementById('select-file').addEventListener('click',function(){
-        dialog.showOpenDialog(function (fileNames) {
-            console.log(fileNames);
-            if(fileNames === undefined){
-                console.log("No file selected");
-            } else {
-                document.getElementById("actual-file").value = fileNames[0];
-                music_path = fileNames[0];
-                readFile(music_path);
-                // preload(music_path.value);
-
-                var music_name = music_path.toString().substring(music_path.toString().lastIndexOf('/')+1);
-
-                fs.copyFile(music_path.toString(), 'audio/user_upload/'+music_name, (err) => {
-                    if (err) throw err;
-                    console.log('music was copied to destination');
-                });
-                app.getCurrentWindow().reload();
-            }
-        }); 
-    },false);
-
-
-    function readFile(filepath) {
-        fs.readFile(filepath, 'utf-8', function (err, data) {
-            if(err){
-                alert("An error ocurred reading the file :" + err.message);
-            }
-        });
+        noiseObject[curNoiseKey].setVolume(0.55);
+        volumeWeight = 0.55;
     }
 
     /*
@@ -261,29 +282,22 @@
 
      */
 
+    var fs = require('fs');
     const dirPath = 'audio/user_upload';
     const music_list = fs.readdirSync(dirPath);
     var nHTML = '';
 
-    if(music_list.length === 1){
+    if(music_list.length === 1) {
         document.getElementById("music_list").innerHTML = "<p>File empty...</p>";
-    }
-    else{
+    } else {
         music_list.forEach(function(item) {
-            if(item !== ".DS_Store")
-                nHTML += '<li><p class="songName" id="' + item + '" onClick=playSong(this.id) style="padding:0; margin:0; line-height:12px;">' + item + '</a></li>';
+            if(item !== ".DS_Store") {
+                nHTML += '<li><p class="songName" id="' + item +
+                    '" onClick = playSong(this.id) style="padding:0; margin:0; line-height:12px;">'
+                    + item + '</a></li>';
+            }
         });
         document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
-    }
-
-    function playSong(song_id){
-        song.disconnect();
-        noise.pause();
-        icon.src = play;
-        progress.value = 0;
-
-        preload("../audio/user_upload/" + song_id);
-        document.getElementById('songName').innerHTML = song_id;
     }
 
 </script>

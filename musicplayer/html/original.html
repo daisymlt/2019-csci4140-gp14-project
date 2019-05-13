@@ -10,7 +10,7 @@
     width: 400px;
 }
 
-.song h2 {
+.song h3 {
     padding: 0.5em 0.8em;
     text-align: center;
 }
@@ -51,33 +51,27 @@
 
 <div>
     <h5>- Uploaded Songs - (sorted by alphabet)</h5>
-    <div id="music_list" style="margin: 1em; width: 400px; height: 300px; overflow-y: scroll;"></div>
+    <div id="music_list" style="margin: 1em; width: 400px; height: 150px; overflow-y: scroll;"></div>
 
     <hr>
 
     <div class="song">
-      <h4 id="songName">Please select a song</h4>
+        <h3 id="songName">Please select a song</h3>
         <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
+
         <div>
           <button class="button" onclick="togglePlaying();">
               <img id="img" src="../image/player/play.png" style="height: 40px; width: auto; margin: 0.5em 1em 0.5em 1.5em" alt="Play/Pause"/>
           </button>
-          <img src="../image/player/volume.png" style="height: 25px; width: auto; margin-right: 10px">
+            <img src="../image/player/volume.png" style="height: 25px; width: auto; margin-right: 10px">
           <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
-      </div>
+        </div>
     </div>
 </div>
 
 <script>
-    /*
-
-        SONG PLAYER
-
-    */
-    
-    const { webContents } = require('electron');
     const { ipcRenderer } = require('electron');
-    var song, noise, reverb, cVerb;
+    var length, curSongKey = '', songObject = [];
 
     var volume = document.getElementById("volume");
     var icon = document.getElementById("img");
@@ -85,50 +79,56 @@
     var play = "../image/player/play.png";
     var pause = "../image/player/pause.png";
 
-    var length;
+    /*
 
-    function preload(filepath) {
-        song = loadSound(filepath, loaded);
+        SONG PLAYER
+
+     */
+    function setup() {
+        
+    }
+
+    function playSong(songID){
+        if (songObject[curSongKey] !== undefined) {
+            songObject[curSongKey].stop();
+        }
+
+        // CHANGE THE CURRENT PLAYING SONG KEY
+        curSongKey = songID;
+        songObject[curSongKey] = loadSound("../audio/user_upload/" + songID, loaded);
+        songObject[curSongKey].playMode('restart');
+
+        icon.src = play;
+        progress.value = 0;
+        document.getElementById('songName').innerHTML = songID;
     }
 
     function loaded() {
-        length = song.duration();
-    }
-
-    function setup() {
-        reverb = new p5.Reverb();
-        song.disconnect();
+        length = songObject[curSongKey].duration();
+        progress.max = length;
     }
 
     function togglePlaying() {
-        if (!song.isPlaying()) {
-            song.play();
-            icon.src = pause;
-        } else {
-            song.pause();
-            icon.src = play;
+        if (songObject[curSongKey] !== undefined) {
+            if (songObject[curSongKey].isPlaying()) {
+                songObject[curSongKey].pause();
+                icon.src = play;
+            } else {
+                songObject[curSongKey].play();
+                icon.src = pause;
+            }
         }
     }
 
     volume.oninput = function () {
-        song.setVolume(this.value / 100);
+        songObject[curSongKey].setVolume(this.value / 100);
     };
 
     var intrvl = setInterval( function(){
-        if (song.isPlaying()) {
-            progress.value = (song.currentTime() / length) * 100;
+        if (songObject[curSongKey].isPlaying()) {
+            progress.value = songObject[curSongKey].currentTime();
         }
-    }, 1000);    
-
-    /*
-
-        FILE SYSTEM RELATED
-
-    */
-
-    var app = require('electron').remote; 
-    var dialog = app.dialog;
-    var fs = require('fs');
+    }, 1000);
 
     /*
 
@@ -136,26 +136,19 @@
 
     */
 
-    function playSong(song_id){
-        song.disconnect();
-        icon.src = play;
-        progress.value = 0;
-        preload("../audio/user_upload/" + song_id);
-        document.getElementById('songName').innerHTML = song_id;  
-    }
-
+    var fs = require('fs');
     const dirPath = 'audio/user_upload';
     const music_list = fs.readdirSync(dirPath);
-
     var nHTML = '';
 
-    if(music_list.length == 1){
+    if(music_list.length === 1){
         document.getElementById("music_list").innerHTML = "<p>File empty...</p>";
-    }
-    else{
+    } else {
         music_list.forEach(function(item) {
-            if(item != ".DS_Store")
-                nHTML += '<li><p class="songName" id="' + item + '" onClick=playSong(this.id) style="padding:0; margin:0; line-height:14px;">' + item + '</a></li>';
+            if(item !== ".DS_Store")
+                nHTML += '<li><p class="songName" id="' + item +
+                    '" onClick = \'playSong(this.id);\' style="padding:0; margin:0; line-height:14px;">'
+                    + item + '</a></li>';
         });
         document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
     }

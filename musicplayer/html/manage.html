@@ -92,7 +92,6 @@
         fs.readFile(filepath, 'utf-8', function (err, data) {
             if(err){
                 alert("An error ocurred reading the file :" + err.message);
-                return;
             }
         });
     }
@@ -102,12 +101,12 @@
 
     var nHTML = '';
 
-    if(music_list.length == 1){
+    if(music_list.length === 1){
         document.getElementById("music_list").innerHTML = "<p>File empty...</p>";
     }
     else{
         music_list.forEach(function(item) {
-            if(item != ".DS_Store")
+            if(item !== ".DS_Store")
                 nHTML += '<li><p class="songName" id="' + item + '" style="padding:0; margin:0; line-height:36px;">' + item + '</a>&nbsp&nbsp&nbsp<button id="' + item + '" onClick=deleteSong(this.id)>Delete</button></li>';
         });
         document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
@@ -135,7 +134,7 @@
     }
 
     /*
-    
+
         YOUTUBE UPLOAD
 
     */
@@ -160,7 +159,7 @@
     var ytlink;
     var ytcode = "test";
     function youtubedl(ytlink){
-        if(ytlink == ""){
+        if(ytlink === ""){
             document.getElementById("ytnull").innerHTML = "YouTube link should not be null.";
             document.getElementById("ytloading").innerHTML = "";
         }

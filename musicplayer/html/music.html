@@ -68,14 +68,14 @@
     <hr>
 
     <div class="song">
-            <h3 id="songName">Please select a song</h3>
+        <h3 id="songName">Please select a song</h3>
         <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
-        <div>
 
+        <div>
           <button class="button" onclick="togglePlaying();">
               <img id="img" src="../image/player/play.png" style="height: 40px; width: auto; margin: 1em 1.5em 1em 1.5em" alt="Play/Pause"/>
           </button>
-          <img src="../image/player/volume.png" style="height: 25px; width: auto; margin-right: 10px">
+            <img src="../image/player/volume.png" style="height: 25px; width: auto; margin-right: 10px">
           <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
         </div>
     </div>
@@ -195,7 +195,7 @@
             progress.value = songObject[curSongKey].currentTime();
             console.log(songObject[curSongKey].currentTime());
         }
-    }, 2000);  // clearInterval(intrvl); // if it's needed
+    }, 1500);  // clearInterval(intrvl); // if it's needed
 
     /*
 
@@ -289,7 +289,7 @@
         music_list.forEach(function(item) {
             if(item !== ".DS_Store") {
                 nHTML += '<li><p class="songName" id="' + item +
-                    '" onClick = playSong(this.id) style="padding:0; margin:0; line-height:12px;">'
+                    '" onClick = \'playSong(this.id);\'  style="padding:0; margin:0; line-height:14px;">'
                     + item + '</a></li>';
             }
         });

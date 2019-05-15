@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ba46d8c0-ed98-4d0f-8776-0da63ee2e5c5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/manage.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/music.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/music.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html/original.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/original.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/html/white.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/white.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
@@ -19,25 +18,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.48625794">
+    <splitter split-orientation="horizontal" split-proportion="0.39957717">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/html/white.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="488">
-                  <caret line="136" column="38" selection-start-line="136" selection-start-column="38" selection-end-line="136" selection-end-column="38" />
-                  <folding>
-                    <element signature="n#style#0;n#h1#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/html/manage.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="588">
+                <state relative-caret-position="2895">
                   <caret line="193" selection-start-line="193" selection-end-line="193" />
                   <folding>
                     <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -53,16 +40,29 @@
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/html/white.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="546">
+                  <caret line="175" column="6" lean-forward="true" selection-start-line="175" selection-start-column="6" selection-end-line="175" selection-end-column="6" />
+                  <folding>
+                    <element signature="n#style#0;n#h1#0;n#!!top" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/html/music.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="92">
-                  <caret line="133" column="4" lean-forward="true" selection-start-line="133" selection-start-column="4" selection-end-line="135" selection-end-column="7" />
+                <state relative-caret-position="156">
+                  <caret line="217" column="39" selection-start-line="217" selection-start-column="39" selection-end-line="217" selection-end-column="39" />
                   <folding>
                     <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#img#0;n#button#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#p#0;n#li#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -97,6 +97,7 @@
         <option value="$PROJECT_DIR$/html/original.html" />
         <option value="$PROJECT_DIR$/html/manage.html" />
         <option value="$PROJECT_DIR$/html/music.html" />
+        <option value="$PROJECT_DIR$/../README.md" />
         <option value="$PROJECT_DIR$/html/white.html" />
       </list>
     </option>
@@ -114,7 +115,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -131,7 +131,7 @@
               <item name="musicplayer" type="b2602c69:ProjectViewProjectNode" />
               <item name="musicplayer" type="462c0819:PsiDirectoryNode" />
               <item name="audio" type="462c0819:PsiDirectoryNode" />
-              <item name="env" type="462c0819:PsiDirectoryNode" />
+              <item name="white_noise" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="musicplayer" type="b2602c69:ProjectViewProjectNode" />
@@ -146,12 +146,18 @@
             <path>
               <item name="musicplayer" type="b2602c69:ProjectViewProjectNode" />
               <item name="musicplayer" type="462c0819:PsiDirectoryNode" />
+              <item name="image" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="musicplayer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="musicplayer" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -208,17 +214,18 @@
       <workItem from="1557746118710" duration="13547000" />
       <workItem from="1557771459625" duration="2555000" />
       <workItem from="1557774111953" duration="35000" />
+      <workItem from="1557825053766" duration="2276000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84916000" />
+    <option name="totallyTimeSpent" value="87192000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.20014094" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20014094" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -343,23 +350,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/music.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="133" column="4" lean-forward="true" selection-start-line="133" selection-start-column="4" selection-end-line="135" selection-end-column="7" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#button#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/../README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="270">
+            <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html/manage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
+        <state relative-caret-position="2895">
           <caret line="193" selection-start-line="193" selection-end-line="193" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
@@ -369,10 +372,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/html/music.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="217" column="39" selection-start-line="217" selection-start-column="39" selection-end-line="217" selection-end-column="39" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#button#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#li#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/html/white.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="136" column="38" selection-start-line="136" selection-start-column="38" selection-end-line="136" selection-end-column="38" />
+        <state relative-caret-position="546">
+          <caret line="175" column="6" lean-forward="true" selection-start-line="175" selection-start-column="6" selection-end-line="175" selection-end-column="6" />
           <folding>
             <element signature="n#style#0;n#h1#0;n#!!top" expanded="true" />
           </folding>

@@ -78,7 +78,7 @@
         <input type="range" class="myslider" min="0" max="100" value="50">
     </div>
     <div>
-        <button class="button" onclick='clickPlay("wave");'>
+        <button class="button" onclick='clickPlay("noise");'>
             <img src="../image/noise.png">
         </button>
         <input type="range" class="myslider" min="0" max="100" value="50">
@@ -95,6 +95,18 @@
         </button>
         <input type="range" class="myslider" min="0" max="100" value="50">
     </div>
+    <div>
+        <button class="button" onclick='clickPlay("wind");'>
+            <img src="../image/breeze.png">
+        </button>
+        <input type="range" class="myslider" min="0" max="100" value="50">
+    </div>
+    <div>
+        <button class="button" onclick='clickPlay("leaf");'>
+            <img src="../image/leaf.png">
+        </button>
+        <input type="range" class="myslider" min="0" max="100" value="50">
+    </div>
 </div>
 
 <script>
@@ -105,16 +117,20 @@
     noisePath["ocean"] = "../audio/white_noise/ocean.mp3";
     noisePath["rain"] = "../audio/white_noise/rain.mp3";
     noisePath["thunder"] = "../audio/white_noise/thunder.mp3";
-    noisePath["wave"] = "../audio/white_noise/pure-white-noise.mp3";
+    noisePath["noise"] = "../audio/white_noise/pure-white-noise.mp3";
     noisePath["rail"] = "../audio/white_noise/train.mp3";
-    noisePath["forest"] = "../audio/white_noise/leaf.mp3";
+    noisePath["forest"] = "../audio/white_noise/birds.mp3";
+    noisePath["wind"] = "../audio/white_noise/wind.mp3";
+    noisePath["leaf"] = "../audio/white_noise/leaf.mp3";
 
     noiseIndex["ocean"] = 0;
     noiseIndex["rain"] = 1;
     noiseIndex["thunder"] = 2;
-    noiseIndex["wave"] = 3;
+    noiseIndex["noise"] = 3;
     noiseIndex["rail"] = 4;
     noiseIndex["forest"] = 5;
+    noiseIndex["wind"] = 6;
+    noiseIndex["leaf"] = 7;
 
     function setup() {
         for (var key in noisePath) {
@@ -146,14 +162,20 @@
     sliderSet[noiseIndex["thunder"]].oninput = function () {
         noiseObject["thunder"].setVolume(this.value / 100);
     };
-    sliderSet[noiseIndex["wave"]].oninput = function () {
-        noiseObject["wave"].setVolume(this.value / 100);
+    sliderSet[noiseIndex["noise"]].oninput = function () {
+        noiseObject["noise"].setVolume(this.value / 100);
     };
     sliderSet[noiseIndex["rail"]].oninput = function () {
         noiseObject["rail"].setVolume(this.value / 100);
     };
     sliderSet[noiseIndex["forest"]].oninput = function () {
-        noiseObject["forest"].setVolume(this.value / 100);
+        noiseObject["forest"].setVolume((this.value / 100) * 0.8);
+    };
+    sliderSet[noiseIndex["wind"]].oninput = function () {
+        noiseObject["wind"].setVolume(this.value / 100);
+    };
+    sliderSet[noiseIndex["leaf"]].oninput = function () {
+        noiseObject["leaf"].setVolume(this.value / 100);
     };
 
     /*

@@ -131,12 +131,11 @@
     noiseIndex["bar"] = 4;
     noiseIndex["concert"] = 5;
 
-    /*
-        TO DO: define as cafe when not yet save
-     */
-
-    var x = localStorage.getItem("envMode");
-    curNoiseKey = x;
+    if (localStorage.hasOwnProperty('envMode')) {
+        curNoiseKey = localStorage.getItem("envMode");
+    } else {
+        curNoiseKey = "cafe";
+    }
 
     /*
 
@@ -162,7 +161,7 @@
         songObject[curSongKey] = loadSound("../audio/user_upload/" + songID, loaded);
         songObject[curSongKey].playMode('restart');
 
-        loadEnvMode(x);
+        loadEnvMode(curNoiseKey);
 
         noiseObject[curNoiseKey].pause();
         icon.src = play;

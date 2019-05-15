@@ -191,9 +191,21 @@
          SAVING ENV DATA
 
      */
+    var imgSet = document.getElementsByClassName("noise")[0].getElementsByTagName("img");
+    var noiseIndex = [];
+    noiseIndex["cafe"] = 0;
+    noiseIndex["campfire"] = 1;
+    noiseIndex["rain"] = 2;
+    noiseIndex["library"] = 3;
+    noiseIndex["bar"] = 4;
+    noiseIndex["concert"] = 5;
 
     function setEnvMode(value) {
         localStorage.setItem("envMode", value);
+        for (var key in noiseIndex) {
+            imgSet[noiseIndex[key]].style.opacity = "0.3";
+        }
+        imgSet[noiseIndex[value]].style.opacity = "1";
     }
 
 </script>

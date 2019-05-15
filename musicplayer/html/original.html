@@ -165,7 +165,7 @@
         music_list.forEach(function(item) {
             if(item !== ".DS_Store")
                 nHTML += '<li><p class="songName" id="' + item +
-                    '" onClick = \'playSong(this.id);\' style="padding:0; margin:0; line-height:14px;">'
+                    '" onClick = \'playSong(this.id);\' style="padding:0; margin:0; line-height:24px;">'
                     + item + '</a></li>';
         });
         document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';

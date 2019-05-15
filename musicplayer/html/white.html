@@ -1,7 +1,6 @@
-<script type="text/javascript" src="../js/sidebar.js"></script>
-
 <script language="JavaScript" type="text/javascript" src="../node_modules/p5/lib/p5.js"></script>
 <script type="text/javascript" src="../node_modules/p5/lib/addons/p5.sound.js"></script>
+<link rel="stylesheet" href="../css/nav.css">
 
 <style>
     .panel {
@@ -56,58 +55,78 @@
     }
 </style>
 
-<h1 style="padding: 0.3em 1em;">White Noise Player</h1>
+<main class="main">
+    <aside class="sidebar">
+        <nav class="nav">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="original.html">Original Music</a></li>
+            <li class="active"><a href="white.html">White Noise</a></li>
+            <li><a href="sketch.html">Construction</a></li>
+            <li><a href="music.html">Atmosphere</a></li>
+            <li><a href="manage.html">Manage</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        </nav>
+    </aside>
 
-<div class="panel">
-    <div>
-        <button class="button" onclick='clickPlay("ocean");'>
-            <img src="../image/ocean.png">
-        </button>
-            <input type="range" class="myslider" min="0" max="100" value="50">
-    </div>
-    <div>
-        <button class="button" onclick='clickPlay("rain");'>
-            <img src="../image/rain.png">
-        </button>
-        <input type="range" class="myslider" min="0" max="100" value="50">
-    </div>
-    <div>
-        <button class="button" onclick='clickPlay("thunder");'>
-            <img src="../image/thunder.png">
-        </button>
-        <input type="range" class="myslider" min="0" max="100" value="50">
-    </div>
-    <div>
-        <button class="button" onclick='clickPlay("noise");'>
-            <img src="../image/noise.png">
-        </button>
-        <input type="range" class="myslider" min="0" max="100" value="50">
-    </div>
-    <div>
-        <button class="button" onclick='clickPlay("rail");'>
-            <img src="../image/rail.png">
-        </button>
-        <input type="range" class="myslider" min="0" max="100" value="50">
-    </div>
-    <div>
-        <button class="button" onclick='clickPlay("forest");'>
-            <img src="../image/forest.png">
-        </button>
-        <input type="range" class="myslider" min="0" max="100" value="50">
-    </div>
-    <div>
-        <button class="button" onclick='clickPlay("wind");'>
-            <img src="../image/breeze.png">
-        </button>
-        <input type="range" class="myslider" min="0" max="100" value="50">
-    </div>
-    <div>
-        <button class="button" onclick='clickPlay("leaf");'>
-            <img src="../image/leaf.png">
-        </button>
-        <input type="range" class="myslider" min="0" max="100" value="50">
-    </div>
-</div>
+    <section class="content"> 
+        <div class="container">
+            <h1 style="padding: 0.3em 1em;">White Noise Player</h1>
+
+            <div class="panel">
+                <div>
+                    <button class="button" onclick='clickPlay("ocean");'>
+                        <img src="../image/ocean.png">
+                    </button>
+                        <input type="range" class="myslider" min="0" max="100" value="50">
+                </div>
+                <div>
+                    <button class="button" onclick='clickPlay("rain");'>
+                        <img src="../image/rain.png">
+                    </button>
+                    <input type="range" class="myslider" min="0" max="100" value="50">
+                </div>
+                <div>
+                    <button class="button" onclick='clickPlay("thunder");'>
+                        <img src="../image/thunder.png">
+                    </button>
+                    <input type="range" class="myslider" min="0" max="100" value="50">
+                </div>
+                <div>
+                    <button class="button" onclick='clickPlay("noise");'>
+                        <img src="../image/noise.png">
+                    </button>
+                    <input type="range" class="myslider" min="0" max="100" value="50">
+                </div>
+                <div>
+                    <button class="button" onclick='clickPlay("rail");'>
+                        <img src="../image/rail.png">
+                    </button>
+                    <input type="range" class="myslider" min="0" max="100" value="50">
+                </div>
+                <div>
+                    <button class="button" onclick='clickPlay("forest");'>
+                        <img src="../image/forest.png">
+                    </button>
+                    <input type="range" class="myslider" min="0" max="100" value="50">
+                </div>
+                <div>
+                    <button class="button" onclick='clickPlay("wind");'>
+                        <img src="../image/breeze.png">
+                    </button>
+                    <input type="range" class="myslider" min="0" max="100" value="50">
+                </div>
+                <div>
+                    <button class="button" onclick='clickPlay("leaf");'>
+                        <img src="../image/leaf.png">
+                    </button>
+                    <input type="range" class="myslider" min="0" max="100" value="50">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
 
 <script>
     var noisePath = [], noiseObject = [], noiseIndex = [];
@@ -185,5 +204,3 @@
 
      */
 </script>
-
-<script type="text/javascript" src="../js/sidebar2.js"></script><script type="text/javascript" src="../js/sidebar.js"></script>

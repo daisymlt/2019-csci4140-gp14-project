@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+html {
+  font-family: Arial;
+  font-size: 16px;
+  background: rgb(250, 250, 250);
+}
+
+.sidebar {
+  position: fixed;
+  width: 200px;
+  height: 100vh;
+  background: #000000;
+  font-size: 13px;
+}
+
+.nav {
+  position: relative;
+  margin: 0 5%;
+  text-align: right;
+  top: 45%;
+  transform: translateY(-50%);
+}
+
+.nav ul {
+  list-style: none;
+}
+.nav ul li {
+  position: relative;
+  margin: 2em 0;
+}
+.nav ul li a {
+  line-height: 3em;
+  text-decoration: none;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.35);
+  display: block;
+  transition: all ease-out 300ms;
+}
+.nav ul li.active a {
+  color: white;
+}
+.nav ul li:not(.active)::after {
+  opacity: 0.2;
+}
+.nav ul li:not(.active):hover a {
+  color: rgba(255, 255, 255, 0.75);
+}
+.nav ul li::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 0.2em;
+  background: black;
+  left: 0;
+  bottom: 0;
+  background-image: linear-gradient(to right, #5e42a6, #b74e91);
+}
+
+.content {
+  position: relative;
+  width: 75%;
+  float: right;
+  height: 100vh;
+}
+.content .container {
+  height: 100%;
+}
+.content p {
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+}

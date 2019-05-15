@@ -1,7 +1,6 @@
-<script type="text/javascript" src="../js/sidebar.js"></script>
-
 <script language="JavaScript" type="text/javascript" src="../node_modules/p5/lib/p5.js"></script>
 <script type="text/javascript" src="../node_modules/p5/lib/addons/p5.sound.js"></script>
+<link rel="stylesheet" href="../css/nav.css">
 
 <style>
 .song {
@@ -49,25 +48,44 @@
 
 </style>
 
-<div>
-    <h5>- Uploaded Songs - (sorted by alphabet)</h5>
-    <div id="music_list" style="margin: 1em; width: 400px; height: 150px; overflow-y: scroll;"></div>
+<main class="main">
+    <aside class="sidebar">
+        <nav class="nav">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li class="active"><a href="original.html">Original Music</a></li>
+            <li><a href="white.html">White Noise</a></li>
+            <li><a href="sketch.html">Construction</a></li>
+            <li><a href="music.html">Atmosphere</a></li>
+            <li><a href="manage.html">Manage</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        </nav>
+    </aside>
 
-    <hr>
+    <section class="content"> 
+            <div class="container">
+                <h5>- Uploaded Songs - (sorted by alphabet)</h5>
+                <div id="music_list" style="margin: 1em; height: 150px; overflow-y: scroll;"></div>
 
-    <div class="song">
-        <h3 id="songName">Please select a song</h3>
-        <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
+                <hr>
 
-        <div>
-          <button class="button" onclick="togglePlaying();">
-              <img id="img" src="../image/player/play.png" style="height: 40px; width: auto; margin: 0.5em 1em 0.5em 1.5em" alt="Play/Pause"/>
-          </button>
-            <img src="../image/player/volume.png" style="height: 25px; width: auto; margin-right: 10px">
-          <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
-        </div>
-    </div>
-</div>
+                <div class="song">
+                    <h3 id="songName">Please select a song</h3>
+                    <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
+
+                    <div>
+                    <button class="button" onclick="togglePlaying();">
+                        <img id="img" src="../image/player/play.png" style="height: 40px; width: auto; margin: 0.5em 1em 0.5em 1.5em" alt="Play/Pause"/>
+                    </button>
+                        <img src="../image/player/volume.png" style="height: 25px; width: auto; margin-right: 10px">
+                    <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
+                    </div>
+                </div>
+            </div>
+    </section>
+</main>
+
 
 <script>
     const { ipcRenderer } = require('electron');
@@ -154,5 +172,3 @@
     }
 
 </script>
-
-<script type="text/javascript" src="../js/sidebar2.js"></script>

@@ -1,7 +1,6 @@
-<script type="text/javascript" src="../js/sidebar.js"></script>
-
 <script language="JavaScript" type="text/javascript" src="../node_modules/p5/lib/p5.js"></script>
 <script type="text/javascript" src="../node_modules/p5/lib/addons/p5.sound.js"></script>
+<link rel="stylesheet" href="../css/nav.css">
 
 <style>
 .song {
@@ -61,47 +60,65 @@
 }
 </style>
 
-<div>
-    <h5>- Uploaded Songs - (sorted by alphabet)</h5>
-    <div id="music_list" style="margin: 1em; width: 400px; height: 100px; overflow-y: scroll;"></div>
+<main class="main">
+    <aside class="sidebar">
+        <nav class="nav">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="original.html">Original Music</a></li>
+            <li><a href="white.html">White Noise</a></li>
+            <li><a href="sketch.html">Construction</a></li>
+            <li class="active"><a href="music.html">Atmosphere</a></li>
+            <li><a href="manage.html">Manage</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        </nav>
+    </aside>
 
-    <hr>
+    <section class="content"> 
+        <div class="container">
+            <h5>- Uploaded Songs - (sorted by alphabet)</h5>
+            <div id="music_list" style="margin: 1em; height: 100px; overflow-y: scroll;"></div>
 
-    <div class="song">
-        <h3 id="songName">Please select a song</h3>
-        <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
+            <hr>
 
-        <div>
-          <button class="button" onclick="togglePlaying();">
-              <img id="img" src="../image/player/play.png" style="height: 40px; width: auto; margin: 1em 1.5em 1em 1.5em" alt="Play/Pause"/>
-          </button>
-            <img src="../image/player/volume.png" style="height: 25px; width: auto; margin-right: 10px">
-          <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
+            <div class="song">
+                <h3 id="songName">Please select a song</h3>
+                <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
+
+                <div>
+                <button class="button" onclick="togglePlaying();">
+                    <img id="img" src="../image/player/play.png" style="height: 40px; width: auto; margin: 1em 1.5em 1em 1.5em" alt="Play/Pause"/>
+                </button>
+                    <img src="../image/player/volume.png" style="height: 25px; width: auto; margin-right: 10px">
+                <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
+                </div>
+            </div>
+
+            <div class = "noise">
+                <button class="button" onclick='loadEnvMode("cafe");'>
+                    <img src="../image/cafe.png">
+                </button>
+                <button class="button" onclick='loadEnvMode("campfire");'>
+                    <img src="../image/campfire.png">
+                </button>
+                <button class="button" onclick='loadEnvMode("rain");'>
+                    <img src="../image/rain.png">
+                </button>
+                <button class="button" onclick='loadEnvMode("library");'>
+                    <img src="../image/library.png">
+                </button>
+                <button class="button" onclick="">
+                    <img src="../image/wine.png">
+                </button>
+                <button class="button" onclick='loadEnvMode("concert");'>
+                    <img src="../image/concert.png">
+                </button>
+            </div>
         </div>
-    </div>
+    </section>
+</main>
 
-    <div class = "noise">
-        <button class="button" onclick='loadEnvMode("cafe");'>
-            <img src="../image/cafe.png">
-        </button>
-        <button class="button" onclick='loadEnvMode("campfire");'>
-            <img src="../image/campfire.png">
-        </button>
-        <button class="button" onclick='loadEnvMode("rain");'>
-            <img src="../image/rain.png">
-        </button>
-        <button class="button" onclick='loadEnvMode("library");'>
-            <img src="../image/library.png">
-        </button>
-        <button class="button" onclick="">
-            <img src="../image/wine.png">
-        </button>
-        <button class="button" onclick='loadEnvMode("concert");'>
-            <img src="../image/concert.png">
-        </button>
-    </div>
-
-</div>
 
 <script>
     const { ipcRenderer } = require('electron');
@@ -269,5 +286,3 @@
         document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
     }
 </script>
-
-<script type="text/javascript" src="../js/sidebar2.js"></script>

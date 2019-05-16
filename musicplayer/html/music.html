@@ -89,8 +89,6 @@
             <h5>- Uploaded Songs - (sorted by alphabet)</h5>
             <div id="music_list" style="margin: 1em; height: 100px; overflow-y: scroll;"></div>
 
-            <hr>
-
             <div id = 'visualizer'>
             </div>
 
@@ -255,10 +253,6 @@
     }
 
     function loadEnvMode(envMode) {
-        /*
-            NOT YET TUNED
-        */
-
         songObject[curSongKey].disconnect();
         if (envMode === "cafe" || envMode === "campfire") {
             reverb.process(songObject[curSongKey], 7, 48);
@@ -318,7 +312,7 @@
     var intrvl = setInterval( function(){
         if (songObject[curSongKey].isPlaying()) {
             progress.value = songObject[curSongKey].currentTime();
-            console.log(songObject[curSongKey].currentTime());
+            //console.log(songObject[curSongKey].currentTime());
         }
     }, 1000);  // clearInterval(intrvl); // if it's needed
 

@@ -16,7 +16,7 @@
         }
 
         .song h3 {
-            padding: 0.8em 0.8em;
+            padding: 0.3em 0.8em;
             text-align: center;
         }
 
@@ -76,6 +76,10 @@
             background: #454545;
             box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
         }
+
+        .songName:hover{
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -96,10 +100,10 @@
 
     <section class="content">
         <div class="container">
-            <h5 style="padding: 0.3em 1em;">- Uploaded Songs - (sorted by alphabet)</h5>
-            <div id="music_list" style="margin: 1em; height: 100px; overflow-y: scroll;"></div>
+            <h5 style="padding: 0em 1em;">- Uploaded Songs - (sorted by alphabet)</h5>
+            <div id="music_list" style="margin: 1em; height: 120px; overflow-y: scroll;"></div>
 
-            <div class="song">
+            <div class="song" style="padding: 0.8em;">
                 <h3 id="songName">Please select a song</h3>
                 <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
 
@@ -115,16 +119,16 @@
             <h3 style="padding: 1.2em 1em 0em 1em; color: gray">Choose your desired sound effect first.</h3>
 
             <div class="panel">
-                <button class="button" onclick=''>
+                <button class="button" onclick='loadSoundMode("origin");'>
                     <img src="../image/cd.png" style="height: 60px;">
                 </button>
-                <button class="button" onclick=''>
+                <button class="button" onclick='loadSoundMode("headphone");'>
                     <img src="../image/headphone.png" style="height: 60px;">
                 </button>
-                <button class="button" onclick=''>
+                <button class="button" onclick='loadSoundMode("speaker");'>
                     <img src="../image/speaker.png" style="height: 60px;">
                 </button>
-                <button class="button" onclick=''>
+                <button class="button" onclick='loadSoundMode("show");'>
                     <img src="../image/concert.png" style="height: 60px;">
                 </button>
             </div>
@@ -188,7 +192,7 @@
 <script>
     var noisePath = [], noiseObject = [], noiseIndex = [];
     var sliderSet = document.getElementsByClassName("myslider");
-    var imgSet = document.getElementsByClassName("panel")[0].getElementsByTagName("img");
+    var imgSet = document.getElementsByClassName("panel")[1].getElementsByTagName("img");
 
     noisePath["ocean"] = "../audio/white_noise/ocean.mp3";
     noisePath["rain"] = "../audio/white_noise/rain.mp3";
@@ -208,48 +212,6 @@
     noiseIndex["wind"] = 6;
     noiseIndex["leaf"] = 7;
 
-    function setup() {
-        for (var key in noisePath) {
-            noiseObject[key] = loadSound(noisePath[key]);
-            noiseObject[key].setVolume(0.5);
-        }
-    }
-
-    function clickPlay(key) {
-        if (!noiseObject[key].isPlaying()) {
-            noiseObject[key].play();
-            imgSet[noiseIndex[key]].style.opacity = "1";
-        } else {
-            noiseObject[key].pause();
-            imgSet[noiseIndex[key]].style.opacity = "0.3";
-        }
-    }
-
-    sliderSet[noiseIndex["ocean"]].oninput = function () {
-        noiseObject["ocean"].setVolume(this.value / 100);
-    };
-    sliderSet[noiseIndex["rain"]].oninput = function () {
-        noiseObject["rain"].setVolume(this.value / 100);
-    };
-    sliderSet[noiseIndex["thunder"]].oninput = function () {
-        noiseObject["thunder"].setVolume(this.value / 100);
-    };
-    sliderSet[noiseIndex["wave"]].oninput = function () {
-        noiseObject["wave"].setVolume(this.value / 100);
-    };
-    sliderSet[noiseIndex["rail"]].oninput = function () {
-        noiseObject["rail"].setVolume(this.value / 100);
-    };
-    sliderSet[noiseIndex["forest"]].oninput = function () {
-        noiseObject["forest"].setVolume((this.value / 100) * 0.8);
-    };
-    sliderSet[noiseIndex["wind"]].oninput = function () {
-        noiseObject["wind"].setVolume(this.value / 100);
-    };
-    sliderSet[noiseIndex["leaf"]].oninput = function () {
-        noiseObject["leaf"].setVolume(this.value / 100);
-    };
-
     /*
 
         DISPLAY SONG LIST SECTION
@@ -267,12 +229,150 @@
         music_list.forEach(function(item) {
             if(item !== ".DS_Store") {
                 nHTML += '<li><p class="songName" id="' + item +
-                    '" onClick = \'playSong(this.id);\'  style="padding:0; margin:0; line-height:14px;">'
+                    '" onClick = \'playSong(this.id);\'  style="padding:0; margin:0; line-height:20px;">'
                     + item + '</a></li>';
             }
         });
         document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
     }
+
+    /*
+
+        SONG PLAYER
+
+     */
+
+    const { ipcRenderer } = require('electron');
+    var length, curSongKey = '', songObject = [];
+    var volume = document.getElementById("volume");
+    var icon = document.getElementById("img");
+    var progress = document.getElementById("progress");
+    var play = "../image/player/play.png";
+    var pause = "../image/player/pause.png";
+
+    function playSong(songID){
+        if (songObject[curSongKey] !== undefined) {
+            songObject[curSongKey].stop();
+        }
+
+        // CHANGE THE CURRENT PLAYING SONG KEY
+        curSongKey = songID;
+        songObject[curSongKey] = loadSound("../audio/user_upload/" + songID, loaded);
+        songObject[curSongKey].playMode('restart');
+
+        icon.src = play;
+        progress.value = 0;
+        document.getElementById('songName').innerHTML = songID;
+    }
+
+    function loaded() {
+        length = songObject[curSongKey].duration();
+        progress.max = length;
+    }
+
+    function togglePlaying() {
+        if (songObject[curSongKey] !== undefined) {
+            if (songObject[curSongKey].isPlaying()) {
+                songObject[curSongKey].pause();
+                icon.src = play;
+            } else {
+                songObject[curSongKey].play();
+                icon.src = pause;
+            }
+        }
+    }
+
+    volume.oninput = function () {
+        songObject[curSongKey].setVolume(this.value / 100);
+    };
+
+    var intrvl = setInterval( function(){
+        if (songObject[curSongKey].isPlaying()) {
+            progress.value = songObject[curSongKey].currentTime();
+        }
+    }, 1000);
+
+    /*
+
+        ADDING SOUND EFFECT
+
+     */
+
+    var soundIndex = [], curSoundKey = '';
+    var soundSet = document.getElementsByClassName("panel")[0].getElementsByTagName("img");
+    soundIndex["origin"] = 0;
+    soundIndex["headphone"] = 1;
+    soundIndex["speaker"] = 2;
+    soundIndex["show"] = 3;
+
+    function loadSoundMode(envMode) {
+        songObject[curSongKey].disconnect();
+        if (curSoundKey !== '') {
+            soundSet[soundIndex[curSoundKey]].style.opacity = "0.3";
+        }
+
+        if (envMode === "headphone") {
+            reverb.process(songObject[curSongKey], 3, 40);
+        } else if (envMode === "speaker") {
+            reverb.process(songObject[curSongKey], 7, 48);
+        } else if (envMode === "show") {
+            cVerb.process(songObject[curSongKey]);
+        } else {
+            songObject[curSongKey].connect();
+        }
+        curSoundKey = envMode;
+        soundSet[soundIndex[envMode]].style.opacity = "1";
+    }
+
+    /*
+
+        WHITE NOISE PLAYER
+
+     */
+
+    function setup() {
+        for (var key in noisePath) {
+            noiseObject[key] = loadSound(noisePath[key]);
+            noiseObject[key].setVolume(0.5);
+        }
+        reverb = new p5.Reverb();
+        cVerb = new p5.Convolver("../IMreverbs/Narrow Bumpy Space.wav");
+    }
+
+    function clickPlay(key) {
+        if (!noiseObject[key].isPlaying()) {
+            noiseObject[key].play();
+            imgSet[noiseIndex[key]].style.opacity = "1";
+        } else {
+            noiseObject[key].pause();
+            imgSet[noiseIndex[key]].style.opacity = "0.3";
+        }
+    }
+
+    sliderSet[2].oninput = function () {
+        noiseObject["ocean"].setVolume(this.value / 100);
+    };
+    sliderSet[3].oninput = function () {
+        noiseObject["rain"].setVolume(this.value / 100);
+    };
+    sliderSet[4].oninput = function () {
+        noiseObject["thunder"].setVolume(this.value / 100);
+    };
+    sliderSet[5].oninput = function () {
+        noiseObject["wave"].setVolume(this.value / 100);
+    };
+    sliderSet[6].oninput = function () {
+        noiseObject["rail"].setVolume(this.value / 100);
+    };
+    sliderSet[7].oninput = function () {
+        noiseObject["forest"].setVolume((this.value / 100) * 0.8);
+    };
+    sliderSet[8].oninput = function () {
+        noiseObject["wind"].setVolume(this.value / 100);
+    };
+    sliderSet[9].oninput = function () {
+        noiseObject["leaf"].setVolume(this.value / 100);
+    };
 </script>
 </body>
 </html>

@@ -7,7 +7,9 @@ let win
 
 function createWindow () {
   // 建立瀏覽器視窗。
-  win = new BrowserWindow({ width: 1000, height: 800, title: "Harmonious",})
+  win = new BrowserWindow({ width: 1000, height: 800, title: "Harmonious",
+    minHeight: 500,
+    minWidth: 830})
 
   // 並載入應用程式的 index.html。
   win.loadFile('html/home.html')

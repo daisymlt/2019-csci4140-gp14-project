@@ -1,101 +1,135 @@
-<script language="JavaScript" type="text/javascript" src="../node_modules/p5/lib/p5.js"></script>
-<script type="text/javascript" src="../node_modules/p5/lib/addons/p5.sound.js"></script>
-<link rel="stylesheet" href="../css/nav.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Atmosphere</title>
 
-<style>
-.song {
-    background: white;
-    border-radius: 13px;
-    width: 450px;
-}
+    <script language="JavaScript" type="text/javascript" src="../node_modules/p5/lib/p5.js"></script>
+    <script type="text/javascript" src="../node_modules/p5/lib/addons/p5.sound.js"></script>
+    <link rel="stylesheet" href="../css/nav.css">
 
-.song h3 {
-    padding: 0.5em 0.8em;
-    text-align: center;
-}
+    <style>
+        .song {
+            background: white;
+            border-radius: 13px;
+            width: 450px;
+        }
 
-.button {
-    background-color: transparent;
-    border: none;
-    display: inline;
-}
+        .song h3 {
+            padding: 0.8em 0.8em;
+            text-align: center;
+        }
 
-.myslider {
-    -webkit-appearance: none;
-    height: 6px;
-    border-radius: 4px;
-    background: #eeeeee;
-    display: inline;
-    -webkit-transition: .2s;
-    transition: background .2s;
-}
-.myslider:hover {
-    background: #82d3fc;
-}
+        .button {
+            background-color: transparent;
+            border: none;
+            display: inline;
+        }
 
-.myslider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 15px;
-    height: 15px;
-    border-radius: 7px;
-    background: #454545;
-    box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
-}
+        .myslider {
+            -webkit-appearance: none;
+            height: 6px;
+            border-radius: 4px;
+            background: #eeeeee;
+            display: inline;
+            -webkit-transition: .2s;
+            transition: background .2s;
+        }
+        .myslider:hover {
+            background: #82d3fc;
+        }
 
-.noise img {
-    height: 50px;
-    width: auto;
-    margin: 1.5em 1.5em 1em 1.5em;
-    opacity: 0.4;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-}
+        .myslider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 7px;
+            background: #454545;
+            box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+        }
 
-.noise img:hover {
-    opacity: 1;
-}
+        .noise img {
+            height: 50px;
+            width: auto;
+            margin: 1.5em 1.5em 1em 1.5em;
+            opacity: 0.4;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
 
-.songName:hover{
-    text-decoration: underline;
-}
-</style>
+        .noise img:hover {
+            opacity: 1;
+        }
 
+        .songName:hover{
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+
+<body>
 <main class="main">
     <aside class="sidebar">
         <nav class="nav">
-        <ul>
-            <li><a href="home.html">Home</a></li>
-            <li><a href="original.html">Original Music</a></li>
-            <li><a href="white.html">White Noise</a></li>
-            <li><a href="sketch.html">Construction</a></li>
-            <li class="active"><a href="music.html">Atmosphere</a></li>
-            <li><a href="manage.html">Manage</a></li>
-            <li><a href="about.html">About</a></li>
-        </ul>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="original.html">Original Music</a></li>
+                <li><a href="white.html">White Noise</a></li>
+                <li><a href="mixer.html">Mixer</a></li>
+                <li class="active"><a href="music.html">Atmosphere</a></li>
+                <li><a href="manage.html">Manage</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
         </nav>
     </aside>
 
-    <section class="content"> 
+    <section class="content">
         <div class="container">
             <h5>- Uploaded Songs - (sorted by alphabet)</h5>
             <div id="music_list" style="margin: 1em; height: 100px; overflow-y: scroll;"></div>
 
             <hr>
 
+            <div id = 'testt'>
+                <script>
+                    let sketch = function(p) {
+                        var amp;
+
+                        p.setup = function(){
+                            p.createCanvas(200, 200);
+                            amp = new p5.Amplitude();
+                        };
+
+                        p.draw = function () {
+                            p.background(51);
+                            //linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)
+
+                            var vol = amp.getLevel();
+                            var diam = map(vol, 0, 0.3, 10, 200);
+
+                            p.fill(255, 0, 255);
+                            p.ellipse(100, 100, diam, diam);
+                        };
+                    };
+                    new p5(sketch, 'testt');
+                </script>
+            </div>
+
             <div class="song">
                 <h3 id="songName">Please select a song</h3>
                 <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
 
                 <div>
-                <button class="button" onclick="togglePlaying();">
-                    <img id="img" src="../image/player/play.png" style="height: 40px; width: auto; margin: 1em 1.5em 1em 1.5em" alt="Play/Pause"/>
-                </button>
-                    <img src="../image/player/volume.png" style="height: 25px; width: auto; margin-right: 10px">
-                <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%">
+                    <button class="button" onclick="togglePlaying();">
+                        <img id="img" src="../image/player/play.png" style="height: 40px; width: auto; margin: 1em 1.5em 1em 1.5em" alt="Play/Pause"/>
+                    </button>
+                    <img src="../image/player/volume.png" style="height: 30px; width: auto; margin: 1em 1.5em 1em 0.5em;">
+                    <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%; margin: 1em 1.5em 1em 0.5em;">
                 </div>
             </div>
 
-            <div class = "noise">
+            <div class = "noise" style="padding: 1em;">
                 <button class="button" onclick='loadEnvMode("cafe");'>
                     <img src="../image/cafe.png">
                 </button>
@@ -286,3 +320,5 @@
         document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
     }
 </script>
+</body>
+</html>

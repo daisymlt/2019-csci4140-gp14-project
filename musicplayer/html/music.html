@@ -91,29 +91,7 @@
 
             <hr>
 
-            <div id = 'testt'>
-                <script>
-                    let sketch = function(p) {
-                        var amp;
-
-                        p.setup = function(){
-                            p.createCanvas(200, 200);
-                            amp = new p5.Amplitude();
-                        };
-
-                        p.draw = function () {
-                            p.background(51);
-                            //linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)
-
-                            var vol = amp.getLevel();
-                            var diam = map(vol, 0, 0.3, 10, 200);
-
-                            p.fill(255, 0, 255);
-                            p.ellipse(100, 100, diam, diam);
-                        };
-                    };
-                    new p5(sketch, 'testt');
-                </script>
+            <div id = 'visualizer'>
             </div>
 
             <div class="song">
@@ -124,7 +102,7 @@
                     <button class="button" onclick="togglePlaying();">
                         <img id="img" src="../image/player/play.png" style="height: 40px; width: auto; margin: 1em 1.5em 1em 1.5em" alt="Play/Pause"/>
                     </button>
-                    <img src="../image/player/volume.png" style="height: 30px; width: auto; margin: 1em 1.5em 1em 0.5em;">
+                    <img src="../image/player/volume.png" style="height: 25px; width: auto; margin: 1em 1.5em 1em 0.5em;">
                     <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%; margin: 1em 1.5em 1em 0.5em;">
                 </div>
             </div>
@@ -142,8 +120,8 @@
                 <button class="button" onclick='loadEnvMode("library");'>
                     <img src="../image/library.png">
                 </button>
-                <button class="button" onclick="">
-                    <img src="../image/wine.png">
+                <button class="button" onclick='loadEnvMode("mtr");'>
+                    <img src="../image/subway.png">
                 </button>
                 <button class="button" onclick='loadEnvMode("concert");'>
                     <img src="../image/concert.png">
@@ -172,14 +150,14 @@
     noisePath["campfire"] = "../audio/env/campfire.mp3";
     noisePath["rain"] = "../audio/white_noise/rain.mp3";
     noisePath["library"] = "../audio/env/library.mp3";
-    noisePath["bar"] = "../audio/white_noise/train.mp3";
+    noisePath["mtr"] = "../audio/env/train.mp3";
     noisePath["concert"] = "../audio/env/concert.mp3";
 
     noiseIndex["cafe"] = 0;
     noiseIndex["campfire"] = 1;
     noiseIndex["rain"] = 2;
     noiseIndex["library"] = 3;
-    noiseIndex["bar"] = 4;
+    noiseIndex["mtr"] = 4;
     noiseIndex["concert"] = 5;
 
     if (localStorage.hasOwnProperty('envMode')) {
@@ -187,6 +165,57 @@
     } else {
         curNoiseKey = "cafe";
     }
+
+    /*
+
+        VISUAL SECTION
+
+     */
+
+    let sketch = function(p) {
+        var amp;
+
+        p.setup = function(){
+            p.createCanvas(450, 200);
+            amp = new p5.Amplitude();
+        };
+
+        p.draw = function () {
+            p.background(51);
+            //linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)
+
+            var vol = amp.getLevel();
+            var diam = map(vol, 0, 0.3, 10, 200);
+
+            p.ellipse(225, 100, diam, diam);
+
+            if (curNoiseKey === "cafe") {
+                p.strokeWeight(0);
+                p.fill('#b49068');
+
+            } else if (curNoiseKey === "campfire") {
+                p.stroke('#fe8ca8');
+                p.fill('#FE6B8B');
+
+            } else if (curNoiseKey === "rain") {
+                p.stroke(0);
+                p.fill('#1c6691');
+
+            } else if (curNoiseKey === "library") {
+                p.stroke(0);
+                p.fill('#c0c0c0');
+
+            } else if (curNoiseKey === "mtr") {
+                p.stroke(0);
+                p.fill(70, 125, 140);
+
+            } else if (curNoiseKey === "concert") {
+                p.stroke(100, 100, 240);
+                p.fill(100, 40, 255);
+            }
+        };
+    };
+    new p5(sketch, 'visualizer');
 
     /*
 
@@ -230,15 +259,12 @@
             NOT YET TUNED
         */
 
-        // songObject[curSongKey].disconnect();
-        if (envMode === "cafe") {
-            songObject[curSongKey].disconnect();
+        songObject[curSongKey].disconnect();
+        if (envMode === "cafe" || envMode === "campfire") {
             reverb.process(songObject[curSongKey], 7, 48);
-        } else if (envMode === "rain") {
-            songObject[curSongKey].disconnect();
+        } else if (envMode === "rain" || envMode === "library" || envMode === "mtr") {
             reverb.process(songObject[curSongKey], 3, 40);
         } else if (envMode === "concert") {
-            songObject[curSongKey].disconnect();
             cVerb.process(songObject[curSongKey]);
         }
 
@@ -255,12 +281,12 @@
 
         if (envMode === "cafe" || envMode === "campfire" || envMode === "library") {
             volumeWeight = 1;
-        } else if (envMode === "rain") {
+        } else if (envMode === "rain" || envMode === "mtr") {
             noiseObject[curNoiseKey].setVolume(0.5);
             volumeWeight = 0.5;
         } else if (envMode === "concert") {
-            noiseObject[curNoiseKey].setVolume(0.55);
-            volumeWeight = 0.55;
+            noiseObject[curNoiseKey].setVolume(0.6);
+            volumeWeight = 0.6;
         }
     }
 

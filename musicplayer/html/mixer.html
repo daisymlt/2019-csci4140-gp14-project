@@ -2,13 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <title>Atmosphere Mixer</title>
 
     <script language="JavaScript" type="text/javascript" src="../node_modules/p5/lib/p5.js"></script>
     <script type="text/javascript" src="../node_modules/p5/lib/addons/p5.sound.js"></script>
     <link rel="stylesheet" href="../css/nav.css">
 
     <style>
+        .song {
+            background: white;
+            border-radius: 13px;
+            width: 450px;
+        }
+
+        .song h3 {
+            padding: 0.8em 0.8em;
+            text-align: center;
+        }
+
         a {
             text-decoration: none;
             color: black;
@@ -17,6 +28,7 @@
         .panel {
             display: flex;
             flex-wrap: wrap;
+            margin: 1em;
         }
 
         .panel img {
@@ -74,9 +86,9 @@
                 <li><a href="home.html">Home</a></li>
                 <li><a href="original.html">Original Music</a></li>
                 <li><a href="white.html">White Noise</a></li>
-                <li><a href="mixer.html">Mixer</a></li>
+                <li class="active"><a href="mixer.html">Mixer</a></li>
                 <li><a href="music.html">Atmosphere</a></li>
-                <li class="active"><a href="manage.html">Manage</a></li>
+                <li><a href="manage.html">Manage</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
         </nav>
@@ -84,7 +96,40 @@
 
     <section class="content">
         <div class="container">
-            <h1 style="padding: 0.3em 1em;">White Noise Player</h1>
+            <h5 style="padding: 0.3em 1em;">- Uploaded Songs - (sorted by alphabet)</h5>
+            <div id="music_list" style="margin: 1em; height: 100px; overflow-y: scroll;"></div>
+
+            <div class="song">
+                <h3 id="songName">Please select a song</h3>
+                <input type="range" class="myslider" min="0" max="100" value="0" id="progress" style="width: 80%; margin: 1em 2.5em 1em 2.5em;">
+
+                <div>
+                    <button class="button" onclick="togglePlaying();">
+                        <img id="img" src="../image/player/play.png" style="height: 40px; width: auto; margin: 1em 1.5em 1em 1.5em" alt="Play/Pause"/>
+                    </button>
+                    <img src="../image/player/volume.png" style="height: 25px; width: auto; margin: 1em 1.5em 1em 0.5em;">
+                    <input type="range" class="myslider" min="0" max="100" value="100" id="volume" style="width: 20%; margin: 1em 1.5em 1em 0.5em;">
+                </div>
+            </div>
+
+            <h3 style="padding: 1.2em 1em 0em 1em; color: gray">Choose your desired sound effect first.</h3>
+
+            <div class="panel">
+                <button class="button" onclick=''>
+                    <img src="../image/cd.png" style="height: 60px;">
+                </button>
+                <button class="button" onclick=''>
+                    <img src="../image/headphone.png" style="height: 60px;">
+                </button>
+                <button class="button" onclick=''>
+                    <img src="../image/speaker.png" style="height: 60px;">
+                </button>
+                <button class="button" onclick=''>
+                    <img src="../image/concert.png" style="height: 60px;">
+                </button>
+            </div>
+
+            <h3 style="padding: 0.3em 1em; color: gray">Choose your desired white noise combination then.</h3>
 
             <div class="panel">
                 <div>
@@ -123,13 +168,24 @@
                     </button>
                     <input type="range" class="myslider" min="0" max="100" value="50">
                 </div>
+                <div>
+                    <button class="button" onclick='clickPlay("wind");'>
+                        <img src="../image/breeze.png">
+                    </button>
+                    <input type="range" class="myslider" min="0" max="100" value="50">
+                </div>
+                <div>
+                    <button class="button" onclick='clickPlay("leaf");'>
+                        <img src="../image/leaf.png">
+                    </button>
+                    <input type="range" class="myslider" min="0" max="100" value="50">
+                </div>
             </div>
         </div>
     </section>
 </main>
 
 <script>
-    var amp;
     var noisePath = [], noiseObject = [], noiseIndex = [];
     var sliderSet = document.getElementsByClassName("myslider");
     var imgSet = document.getElementsByClassName("panel")[0].getElementsByTagName("img");
@@ -139,7 +195,9 @@
     noisePath["thunder"] = "../audio/white_noise/thunder.mp3";
     noisePath["wave"] = "../audio/white_noise/pure-white-noise.mp3";
     noisePath["rail"] = "../audio/white_noise/train.mp3";
-    noisePath["forest"] = "../audio/white_noise/leaf.mp3";
+    noisePath["forest"] = "../audio/white_noise/birds.mp3";
+    noisePath["wind"] = "../audio/white_noise/wind.mp3";
+    noisePath["leaf"] = "../audio/white_noise/leaf.mp3";
 
     noiseIndex["ocean"] = 0;
     noiseIndex["rain"] = 1;
@@ -147,8 +205,8 @@
     noiseIndex["wave"] = 3;
     noiseIndex["rail"] = 4;
     noiseIndex["forest"] = 5;
-
-    //document.body.style.background = 'url(' + c.toDataURL() + ')';
+    noiseIndex["wind"] = 6;
+    noiseIndex["leaf"] = 7;
 
     function setup() {
         for (var key in noisePath) {
@@ -183,8 +241,38 @@
         noiseObject["rail"].setVolume(this.value / 100);
     };
     sliderSet[noiseIndex["forest"]].oninput = function () {
-        noiseObject["forest"].setVolume(this.value / 100);
+        noiseObject["forest"].setVolume((this.value / 100) * 0.8);
     };
+    sliderSet[noiseIndex["wind"]].oninput = function () {
+        noiseObject["wind"].setVolume(this.value / 100);
+    };
+    sliderSet[noiseIndex["leaf"]].oninput = function () {
+        noiseObject["leaf"].setVolume(this.value / 100);
+    };
+
+    /*
+
+        DISPLAY SONG LIST SECTION
+
+     */
+
+    var fs = require('fs');
+    const dirPath = 'audio/user_upload';
+    const music_list = fs.readdirSync(dirPath);
+    var nHTML = '';
+
+    if(music_list.length === 1) {
+        document.getElementById("music_list").innerHTML = "<p>File empty...</p>";
+    } else {
+        music_list.forEach(function(item) {
+            if(item !== ".DS_Store") {
+                nHTML += '<li><p class="songName" id="' + item +
+                    '" onClick = \'playSong(this.id);\'  style="padding:0; margin:0; line-height:14px;">'
+                    + item + '</a></li>';
+            }
+        });
+        document.getElementById("music_list").innerHTML = '<ul>' + nHTML + '</ul>';
+    }
 </script>
 </body>
 </html>
